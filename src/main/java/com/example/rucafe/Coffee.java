@@ -10,5 +10,7 @@ public class Coffee extends MenuItem{
     }
 
     @Override
-    public double itemPrice() {}
+    public double itemPrice() {
+        this.price = numOfAddIns*0.3 +
+    }
 }
