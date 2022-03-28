@@ -1,5 +1,7 @@
 package com.example.rucafe;
 
+
+import java.util.Collections;
 import java.util.ArrayList;
 
 public class Coffee extends MenuItem implements Customizable {
@@ -28,7 +30,6 @@ public class Coffee extends MenuItem implements Customizable {
                 totalAddIns.add(addInName);
                 return true;
             }
-            return false;
         }
         return false;
     }
@@ -41,7 +42,6 @@ public class Coffee extends MenuItem implements Customizable {
                 totalAddIns.remove(addInName);
                 return true;
             }
-            return false;
         }
         return false;
     }
@@ -57,5 +57,17 @@ public class Coffee extends MenuItem implements Customizable {
         } else {
             return (totalAddIns.size() * ONE_ADD_IN_COST) + VENTI_BLACK_COFFEE;
         }
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Coffee) {
+            Coffee coffee = (Coffee) obj;
+            if (coffee.totalAddIns.containsAll(this.totalAddIns) && this.totalAddIns.containsAll(coffee.totalAddIns) &&
+                    (coffee.sizeOfCoffee.equals(this.sizeOfCoffee))){
+                return true;
+            }
+        }
+        return false;
     }
 }
