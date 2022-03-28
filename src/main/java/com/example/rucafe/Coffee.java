@@ -6,6 +6,7 @@ public class Coffee extends MenuItem implements Customizable {
 
     private ArrayList<String> totalAddIns;
     private String sizeOfCoffee;
+    private int quantity;
 
     private static final double SHORT_BLACK_COFFEE = 1.69;
     private static final double TALL_BLACK_COFFEE = 2.09;
@@ -13,9 +14,10 @@ public class Coffee extends MenuItem implements Customizable {
     private static final double VENTI_BLACK_COFFEE = 2.89;
     private static final double ONE_ADD_IN_COST = 0.30;
 
-    public Coffee(ArrayList<String> totalAddIns, String sizeOfCoffee) {
+    public Coffee(ArrayList<String> totalAddIns, String sizeOfCoffee, int quantity) {
         this.totalAddIns = totalAddIns;
         this.sizeOfCoffee = sizeOfCoffee;
+        this.quantity = quantity;
     }
 
     public boolean add(Object obj){
