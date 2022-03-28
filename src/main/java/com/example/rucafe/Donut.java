@@ -26,4 +26,16 @@ public class Donut extends MenuItem {
     public double itemPrice() {
         return this.donutPrice;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Donut) {
+            Donut compared = (Donut) obj;
+            if (this.donutPrice == compared.donutPrice && this.donutType.equals(compared.donutType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
