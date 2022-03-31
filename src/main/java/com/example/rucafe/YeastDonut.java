@@ -3,10 +3,12 @@ package com.example.rucafe;
 public class YeastDonut extends MenuItem {
 
     private int quantity;
+    private String flavor;
     private static final double YEAST_DONUT_PRICE = 1.59;
 
-    public YeastDonut(int quantity) {
+    public YeastDonut(int quantity, String flavor) {
         this.quantity = quantity;
+        this.flavor = flavor;
     }
 
     public double itemPrice() {
@@ -17,7 +19,7 @@ public class YeastDonut extends MenuItem {
     public boolean equals(Object obj) {
         if (obj instanceof YeastDonut) {
             YeastDonut compared = (YeastDonut) obj;
-            if (this.itemPrice() == compared.itemPrice()) {
+            if (this.itemPrice() == compared.itemPrice() && this.flavor.equals(compared.flavor)) {
                 return true;
             }
         }
