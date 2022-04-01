@@ -5,6 +5,7 @@ public class CakeDonut extends MenuItem {
     int quantity;
     private String flavor;
     private static final double CAKE_DONUT_PRICE = 1.79;
+    private static final String DONUT_TYPE = "Cake Donut";
 
 
     public CakeDonut(int quantity, String flavor) {
@@ -25,5 +26,11 @@ public class CakeDonut extends MenuItem {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Quantity: " + this.quantity + " Donut Type: " + DONUT_TYPE + " Flavor: " + this.flavor + " Price: " +
+                this.itemPrice();
     }
 }

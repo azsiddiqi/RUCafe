@@ -5,6 +5,7 @@ public class YeastDonut extends MenuItem {
     private int quantity;
     private String flavor;
     private static final double YEAST_DONUT_PRICE = 1.59;
+    private static final String DONUT_TYPE = "Yeast Donut";
 
     public YeastDonut(int quantity, String flavor) {
         this.quantity = quantity;
@@ -24,6 +25,12 @@ public class YeastDonut extends MenuItem {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Quantity: " + this.quantity + " Donut Type: " + DONUT_TYPE + " Flavor: " + this.flavor + " Price: " +
+                this.itemPrice();
     }
 
 }

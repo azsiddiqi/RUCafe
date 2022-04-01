@@ -5,6 +5,7 @@ public class DonutHole extends MenuItem {
     int quantity;
     private String flavor;
     private static final double DONUT_HOLE_PRICE = 0.39;
+    private static final String DONUT_TYPE = "Donut Hole";
 
 
     public DonutHole(int quantity, String flavor) {
@@ -25,5 +26,11 @@ public class DonutHole extends MenuItem {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Quantity: " + this.quantity + " Donut Type: " + DONUT_TYPE + " Flavor: " + this.flavor + " Price: " +
+                this.itemPrice();
     }
 }
