@@ -77,4 +77,45 @@ public class OrderingCoffeeController implements Initializable {
         mainController.setCurrentOrder(createOrder);
     }
 
+    @FXML
+    void updateSubTotal(ActionEvent event) {
+        ArrayList<String> totalAddIns = new ArrayList<>();
+        if (cream.isSelected() == true) {
+            totalAddIns.add("Cream");
+        }
+        else if (cream.isSelected() == false) {
+            totalAddIns.remove("Cream");
+        }
+
+        if (syrup.isSelected() == true) {
+            totalAddIns.add("Syrup");
+        }
+        else if (syrup.isSelected() == false){
+            totalAddIns.remove("Syrup");
+        }
+
+        if (milk.isSelected() == true) {
+            totalAddIns.add("Milk");
+        }
+        else if (milk.isSelected() == false){
+            totalAddIns.remove("Milk");
+        }
+
+        if (caramel.isSelected() == true) {
+            totalAddIns.add("Caramel");
+        }
+        else if (caramel.isSelected() == false){
+            totalAddIns.remove("Caramel");
+        }
+
+        if (whippedCream.isSelected() == true) {
+            totalAddIns.add("Whipped Cream");
+        }
+        else if (whippedCream.isSelected() == false){
+            totalAddIns.remove("Whipped Cream");
+        }
+
+        Coffee calcCoffee = new Coffee(totalAddIns, listCoffeeSizes.getValue(), Integer.parseInt(listQuantity.getValue()));
+        subTotal.setText(String.valueOf(calcCoffee.itemPrice()));
+    }
 }

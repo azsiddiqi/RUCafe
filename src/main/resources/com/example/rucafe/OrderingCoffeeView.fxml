@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="554.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rucafe.OrderingCoffeeController">
+<BorderPane prefHeight="554.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rucafe.OrderingCoffeeController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ordering Coffee" BorderPane.alignment="CENTER">
          <font>
@@ -34,13 +34,13 @@
         </rowConstraints>
          <children>
             <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <CheckBox fx:id="cream" mnemonicParsing="false" text="Cream" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <CheckBox fx:id="syrup" mnemonicParsing="false" text="Syrup" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <CheckBox fx:id="milk" mnemonicParsing="false" text="Milk" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <CheckBox fx:id="caramel" mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <CheckBox fx:id="whippedCream" mnemonicParsing="false" text="Whipped Cream" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <ComboBox fx:id="listCoffeeSizes" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <ComboBox fx:id="listQuantity" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <CheckBox fx:id="cream" mnemonicParsing="false" onAction="#updateSubTotal" text="Cream" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <CheckBox fx:id="syrup" mnemonicParsing="false" onAction="#updateSubTotal" text="Syrup" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <CheckBox fx:id="milk" mnemonicParsing="false" onAction="#updateSubTotal" text="Milk" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <CheckBox fx:id="caramel" mnemonicParsing="false" onAction="#updateSubTotal" text="Caramel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <CheckBox fx:id="whippedCream" mnemonicParsing="false" onAction="#updateSubTotal" text="Whipped Cream" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <ComboBox fx:id="listCoffeeSizes" onAction="#updateSubTotal" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <ComboBox fx:id="listQuantity" onAction="#updateSubTotal" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sub-Total:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <TextField fx:id="subTotal" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#addToOrder" text="Add to Order" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
