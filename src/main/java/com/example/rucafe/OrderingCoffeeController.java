@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -116,6 +117,7 @@ public class OrderingCoffeeController implements Initializable {
         }
 
         Coffee calcCoffee = new Coffee(totalAddIns, listCoffeeSizes.getValue(), Integer.parseInt(listQuantity.getValue()));
-        subTotal.setText(String.valueOf(calcCoffee.itemPrice()));
+        DecimalFormat PaddingZeroes = new DecimalFormat("#,##0.00");
+        subTotal.setText(String.valueOf(PaddingZeroes.format(calcCoffee.itemPrice())));
     }
 }
