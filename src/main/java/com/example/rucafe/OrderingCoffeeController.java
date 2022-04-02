@@ -44,7 +44,9 @@ public class OrderingCoffeeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource){
         listCoffeeSizes.getItems().addAll("Short", "Tall", "Grande", "Venti");
+        listCoffeeSizes.getSelectionModel().selectFirst();
         listQuantity.getItems().addAll("1", "2", "3", "4", "5");
+        listQuantity.getSelectionModel().selectFirst();
         subTotal.setText("$0.00");
     }
 

@@ -10,10 +10,6 @@ public class StoreOrders implements Customizable {
         this.totalOrders = new ArrayList<>();
     }
 
-    public ArrayList<Order> getTotalOrders() {
-        return this.totalOrders;
-    }
-
     public boolean add(Object obj){
         if (obj instanceof Order) {
             Order addOrder = (Order) obj;
