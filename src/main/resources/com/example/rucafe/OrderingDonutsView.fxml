@@ -35,8 +35,8 @@
             <ComboBox fx:id="listDonutTypes" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <ComboBox fx:id="listQuantities" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Button fx:id="chooseFlavor" mnemonicParsing="false" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button fx:id="removeFlavor" mnemonicParsing="false" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Button mnemonicParsing="false" onAction="#chooseFlavor" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#removeFlavor" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
             <TextField fx:id="subTotal" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sub-Total:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#addToOrder" text="Add to Order" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />

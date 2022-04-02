@@ -6,9 +6,12 @@ public class StoreOrders implements Customizable {
 
     private ArrayList<Order> totalOrders;
 
-    public StoreOrders(Order order) {
+    public StoreOrders() {
         this.totalOrders = new ArrayList<>();
-        this.totalOrders.add(order);
+    }
+
+    public ArrayList<Order> getTotalOrders() {
+        return this.totalOrders;
     }
 
     public boolean add(Object obj){

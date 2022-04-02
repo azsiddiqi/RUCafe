@@ -19,9 +19,16 @@ public class OrderingBasketController {
     @FXML
     private TextField subTotal;
 
+    private MainController mainController;
+
+    public void setMainController(MainController controller) {
+        mainController = controller;
+    }
+
     @FXML
     void placeOrder(ActionEvent event) {
-
+        mainController.getAllStoreOrders().add(mainController.getCurrentOrder());
+        mainController.setCurrentOrder(null);
     }
 
     @FXML

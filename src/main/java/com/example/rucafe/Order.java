@@ -6,9 +6,8 @@ public class Order implements Customizable {
 
     private ArrayList<MenuItem> totalMenuItems;
 
-    public Order(MenuItem item) {
+    public Order() {
         this.totalMenuItems = new ArrayList<>();
-        this.totalMenuItems.add(item);
     }
 
     public boolean add(Object obj){

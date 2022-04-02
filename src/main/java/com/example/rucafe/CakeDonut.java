@@ -2,7 +2,7 @@ package com.example.rucafe;
 
 public class CakeDonut extends MenuItem {
 
-    int quantity;
+    private int quantity;
     private String flavor;
     private static final double CAKE_DONUT_PRICE = 1.79;
     private static final String DONUT_TYPE = "Cake Donut";
