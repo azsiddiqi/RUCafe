@@ -47,7 +47,7 @@
                   <Font size="35.0" />
                </font>
             </Text>
-            <ComboBox fx:id="listOrderNumber" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <ComboBox fx:id="listOrderNumber" onAction="#displayNewOrder" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField fx:id="orderTotal" maxWidth="150.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>

@@ -40,15 +40,16 @@ public class OrderingCoffeeController implements Initializable {
 
     private MainController mainController;
 
-    private Order createOrder = new Order();
+    private ArrayList<String> totalAddIns;
 
     @Override
     public void initialize(URL location, ResourceBundle resource){
+        totalAddIns = new ArrayList<>();
         listCoffeeSizes.getItems().addAll("Short", "Tall", "Grande", "Venti");
         listCoffeeSizes.getSelectionModel().selectFirst();
         listQuantity.getItems().addAll("1", "2", "3", "4", "5");
         listQuantity.getSelectionModel().selectFirst();
-        subTotal.setText("$0.00");
+        subTotal.setText("$1.69");
     }
 
     public void setMainController(MainController controller) {
@@ -57,30 +58,21 @@ public class OrderingCoffeeController implements Initializable {
 
     @FXML
     void addToOrder(ActionEvent event) {
-        ArrayList<String> totalAddIns = new ArrayList<>();
-        if (cream.isSelected() == true) {
-            totalAddIns.add("Cream");
-        }
-        if (syrup.isSelected() == true) {
-            totalAddIns.add("Syrup");
-        }
-        if (milk.isSelected() == true) {
-            totalAddIns.add("Milk");
-        }
-        if (caramel.isSelected() == true) {
-            totalAddIns.add("Caramel");
-        }
-        if (whippedCream.isSelected() == true) {
-            totalAddIns.add("Whipped Cream");
-        }
         Coffee addCoffee = new Coffee(totalAddIns, listCoffeeSizes.getValue(), Integer.parseInt(listQuantity.getValue()));
-        createOrder.add(addCoffee);
-        mainController.setCurrentOrder(createOrder);
+        mainController.getCurrentOrder().add(addCoffee);
+        cream.setSelected(false);
+        syrup.setSelected(false);
+        milk.setSelected(false);
+        caramel.setSelected(false);
+        whippedCream.setSelected(false);
+        totalAddIns = new ArrayList<>();
+        listCoffeeSizes.getSelectionModel().selectFirst();
+        listQuantity.getSelectionModel().selectFirst();
+        subTotal.setText("$1.69");
     }
 
     @FXML
     void updateSubTotal(ActionEvent event) {
-        ArrayList<String> totalAddIns = new ArrayList<>();
         if (cream.isSelected() == true) {
             totalAddIns.add("Cream");
         }
@@ -116,8 +108,8 @@ public class OrderingCoffeeController implements Initializable {
             totalAddIns.remove("Whipped Cream");
         }
 
-        Coffee calcCoffee = new Coffee(totalAddIns, listCoffeeSizes.getValue(), Integer.parseInt(listQuantity.getValue()));
+        Coffee addCoffee = new Coffee(totalAddIns, listCoffeeSizes.getValue(), Integer.parseInt(listQuantity.getValue()));
         DecimalFormat PaddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText(String.valueOf(PaddingZeroes.format(calcCoffee.itemPrice())));
+        subTotal.setText("$" + PaddingZeroes.format(addCoffee.itemPrice()));
     }
 }

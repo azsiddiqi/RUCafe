@@ -28,4 +28,7 @@ public class StoreOrders implements Customizable {
         return false;
     }
 
+    public ArrayList<Order> getTotalOrders() {
+        return this.totalOrders;
+    }
 }

@@ -10,6 +10,10 @@ public class Order implements Customizable {
         this.totalMenuItems = new ArrayList<>();
     }
 
+    public ArrayList<MenuItem> getTotalMenuItems() {
+        return this.totalMenuItems;
+    }
+
     public boolean add(Object obj){
         if (obj instanceof MenuItem) {
             MenuItem additem = (MenuItem) obj;
