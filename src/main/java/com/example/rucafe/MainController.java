@@ -4,9 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainController {
 
@@ -60,6 +63,13 @@ public class MainController {
         StoreOrdersController storeOrdersController = fxmlLoader.getController();
         storeOrdersController.setMainController(this);
         storeOrdersController.initializeData();
+    }
+
+    public void alertPopUp(String titleOfWindow, String contentInsideWindow) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titleOfWindow);
+        alert.setContentText(contentInsideWindow);
+        Optional<ButtonType> finalResult = alert.showAndWait();
     }
 
     public Order getCurrentOrder() {

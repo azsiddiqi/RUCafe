@@ -19,6 +19,7 @@ public class CakeDonut extends MenuItem {
         return this.flavor;
     }
 
+    @Override
     public double itemPrice() {
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         return Double.parseDouble(paddingZeroes.format(CAKE_DONUT_PRICE * this.quantity));

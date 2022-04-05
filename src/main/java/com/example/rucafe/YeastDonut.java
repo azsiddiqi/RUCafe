@@ -18,6 +18,7 @@ public class YeastDonut extends MenuItem {
         return this.flavor;
     }
 
+    @Override
     public double itemPrice() {
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         return Double.parseDouble(paddingZeroes.format(YEAST_DONUT_PRICE * this.quantity));    }

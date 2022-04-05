@@ -19,6 +19,7 @@ public class DonutHole extends MenuItem {
         return this.flavor;
     }
 
+    @Override
     public double itemPrice() {
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         return Double.parseDouble(paddingZeroes.format(DONUT_HOLE_PRICE * this.quantity));

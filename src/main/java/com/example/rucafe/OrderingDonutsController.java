@@ -66,6 +66,7 @@ public class OrderingDonutsController implements Initializable {
         saveDonutHoleQuantity = "1";
         subTotal.setText("$0.00");
         listDonutFlavors.setItems(yeastDonutFlavors);
+        listDonutFlavors.getSelectionModel().selectFirst();
     }
 
     public void setMainController(MainController controller) {
@@ -86,6 +87,7 @@ public class OrderingDonutsController implements Initializable {
         cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee", "Peanut");
         donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
         listDonutFlavors.setItems(yeastDonutFlavors);
+        listDonutFlavors.getSelectionModel().selectFirst();
         listQuantities.getSelectionModel().select(saveYeastDonutQuantity);
         subTotal.setText("$0.00");
     }
@@ -105,10 +107,15 @@ public class OrderingDonutsController implements Initializable {
             listQuantities.getSelectionModel().select(saveDonutHoleQuantity);
             donutImage.setImage(new Image("file:src/main/resources/images/donut_holes.jpg"));
         }
+        listDonutFlavors.getSelectionModel().selectFirst();
     }
 
     @FXML
     void chooseFlavor(ActionEvent event) {
+        if (listDonutFlavors.getSelectionModel().getSelectedIndex() == -1) {
+            mainController.alertPopUp("No item selected!", "No item selected!");
+            return;
+        }
         MenuItem addDonut = null;
         if (listDonutTypes.getValue().equals("Yeast Donut")) {
             addDonut = new YeastDonut(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
@@ -127,6 +134,10 @@ public class OrderingDonutsController implements Initializable {
 
     @FXML
     void removeFlavor(ActionEvent event) {
+        if (listSelectedDonutFlavors.getSelectionModel().getSelectedIndex() == -1) {
+            mainController.alertPopUp("No item selected!", "No item selected!");
+            return;
+        }
         String donutInformation = listSelectedDonutFlavors.getSelectionModel().getSelectedItem().toString();
         String[] splitInformation = donutInformation.split(" ");
         MenuItem removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();
