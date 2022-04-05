@@ -36,7 +36,7 @@ public class OrderingBasketController  {
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText(paddingZeroes.format(price));
         salesTax.setText(paddingZeroes.format(price * 0.06625));
-        orderTotal.setText(paddingZeroes.format(price + price * 0.00625));
+        orderTotal.setText(paddingZeroes.format(price + price * 0.06625));
     }
 
     public void setMainController(MainController controller) {
@@ -64,7 +64,7 @@ public class OrderingBasketController  {
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText(paddingZeroes.format(price));
         salesTax.setText(paddingZeroes.format(price * 0.06625));
-        orderTotal.setText(paddingZeroes.format(price + price * 0.00625));
+        orderTotal.setText(paddingZeroes.format(price + price * 0.06625));
 
     }
 

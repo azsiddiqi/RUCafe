@@ -1,5 +1,7 @@
 package com.example.rucafe;
 
+import java.text.DecimalFormat;
+
 public class YeastDonut extends MenuItem {
 
     private int quantity;
@@ -17,8 +19,8 @@ public class YeastDonut extends MenuItem {
     }
 
     public double itemPrice() {
-        return YEAST_DONUT_PRICE * this.quantity;
-    }
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        return Double.parseDouble(paddingZeroes.format(YEAST_DONUT_PRICE * this.quantity));    }
 
     @Override
     public boolean equals(Object obj) {

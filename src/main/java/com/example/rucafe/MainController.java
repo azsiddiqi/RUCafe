@@ -46,6 +46,8 @@ public class MainController {
         secondWindow.setTitle("Ordering Donuts");
         secondWindow.setScene(secondView);
         secondWindow.show();
+        OrderingDonutsController orderingDonutsController = fxmlLoader.getController();
+        orderingDonutsController.setMainController(this);
     }
 
     @FXML

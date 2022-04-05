@@ -14,7 +14,7 @@ public class StoreOrdersController {
     private ListView<String> listOrderItems;
 
     @FXML
-    private ComboBox<String> listOrderNumber;
+    private ComboBox<Integer> listOrderNumber;
 
     @FXML
     private TextField orderTotal;
@@ -25,8 +25,9 @@ public class StoreOrdersController {
 
 
     public void initializeData() {
+        orderTotal.setText("$0.00");
         for (int i = 0; i < mainController.getAllStoreOrders().getTotalOrders().size(); i++) {
-            listOrderNumber.getItems().add(String.valueOf(i + 1));
+            listOrderNumber.getItems().add(i + 1);
         }
         listOrderNumber.getSelectionModel().selectFirst();
     }
@@ -37,20 +38,27 @@ public class StoreOrdersController {
 
     @FXML
     void cancelOrder(ActionEvent event) {
-
+        orderTotal.setText("$0.00");
+        listOrderItems.getItems().clear();
+        mainController.getAllStoreOrders().getTotalOrders().remove(listOrderNumber.getSelectionModel().getSelectedIndex());
+        listOrderNumber.getItems().remove(listOrderNumber.getSelectionModel().getSelectedItem());
+        listOrderNumber.getSelectionModel().selectFirst();
     }
 
     @FXML
     void displayNewOrder(ActionEvent event) {
         double price = 0;
-        currentOrder = mainController.getAllStoreOrders().getTotalOrders().get(Integer.parseInt(listOrderNumber.getValue()) - 1);
+        if (listOrderNumber.getSelectionModel().getSelectedIndex() == -1) {
+            return;
+        }
+        currentOrder = mainController.getAllStoreOrders().getTotalOrders().get(listOrderNumber.getSelectionModel().getSelectedIndex());
         listOrderItems.getItems().clear();
         for (int i = 0; i < currentOrder.getTotalMenuItems().size(); i++) {
             price = price + currentOrder.getTotalMenuItems().get(i).itemPrice();
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        orderTotal.setText(paddingZeroes.format(price + price * 0.00625));
+        orderTotal.setText("$" + paddingZeroes.format(price + price * 0.06625));
     }
 
     @FXML

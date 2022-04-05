@@ -8,12 +8,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class OrderingDonutsController implements Initializable {
+
+    @FXML
+    private ImageView donutImage;
 
     @FXML
     private ListView<String> listDonutFlavors;
@@ -30,7 +35,7 @@ public class OrderingDonutsController implements Initializable {
     @FXML
     private TextField subTotal;
 
-    private Order createOrder = new Order();
+    private MainController mainController;
 
     private ObservableList<String> yeastDonutFlavors;
 
@@ -63,16 +68,26 @@ public class OrderingDonutsController implements Initializable {
         listDonutFlavors.setItems(yeastDonutFlavors);
     }
 
+    public void setMainController(MainController controller) {
+        mainController = controller;
+    }
+
     @FXML
     void addToOrder(ActionEvent event) {
-        MenuItem createDonut;
-        if (listDonutTypes.getValue().equals("Cake Donut")) {
-            createDonut = new CakeDonut(Integer.parseInt(listQuantities.getValue()), "taw");
-        } else if (listDonutTypes.getValue().equals("Donut Hole")) {
-            createDonut = new DonutHole(Integer.parseInt(listQuantities.getValue()), "strawberry");
-        } else if (listDonutTypes.getValue().equals("Yeast Donut")) {
-            createDonut = new YeastDonut(Integer.parseInt(listQuantities.getValue()), "strawberry");
+        for (int i = 0; i < listSelectedDonutFlavors.getItems().size(); i++) {
+            mainController.getCurrentOrder().add(listSelectedDonutFlavors.getItems().get(i));
         }
+        saveYeastDonutQuantity = "1";
+        saveCakeDonutQuantity = "1";
+        saveDonutHoleQuantity = "1";
+        listDonutTypes.getSelectionModel().selectFirst();
+        listSelectedDonutFlavors.getItems().clear();
+        yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed", "Mint");
+        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee", "Peanut");
+        donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
+        listDonutFlavors.setItems(yeastDonutFlavors);
+        listQuantities.getSelectionModel().select(saveYeastDonutQuantity);
+        subTotal.setText("$0.00");
     }
 
     @FXML
@@ -80,12 +95,15 @@ public class OrderingDonutsController implements Initializable {
         if (listDonutTypes.getValue().equals("Yeast Donut")) {
             listDonutFlavors.setItems(yeastDonutFlavors);
             listQuantities.getSelectionModel().select(saveYeastDonutQuantity);
+            donutImage.setImage(new Image("file:src/main/resources/images/yeast_donut.jpg"));
         } else if (listDonutTypes.getValue().equals("Cake Donut")) {
             listDonutFlavors.setItems(cakeDonutFlavors);
+            donutImage.setImage(new Image("file:src/main/resources/images/cake_donut.jpg"));
             listQuantities.getSelectionModel().select(saveCakeDonutQuantity);
         } else if (listDonutTypes.getValue().equals("Donut Hole")) {
             listDonutFlavors.setItems(donutHoleFlavors);
             listQuantities.getSelectionModel().select(saveDonutHoleQuantity);
+            donutImage.setImage(new Image("file:src/main/resources/images/donut_holes.jpg"));
         }
     }
 

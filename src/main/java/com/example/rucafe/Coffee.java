@@ -1,5 +1,6 @@
 package com.example.rucafe;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Coffee extends MenuItem implements Customizable {
@@ -45,15 +46,18 @@ public class Coffee extends MenuItem implements Customizable {
     }
 
     public double itemPrice() {
+        double price = 0;
         if (this.sizeOfCoffee.equals("Short")) {
-            return ((totalAddIns.size() * ONE_ADD_IN_COST) + SHORT_BLACK_COFFEE) * this.quantity;
+            price = ((totalAddIns.size() * ONE_ADD_IN_COST) + SHORT_BLACK_COFFEE) * this.quantity;
         } else if (this.sizeOfCoffee.equals("Tall")) {
-            return ((totalAddIns.size() * ONE_ADD_IN_COST) + TALL_BLACK_COFFEE) * this.quantity;
+            price = ((totalAddIns.size() * ONE_ADD_IN_COST) + TALL_BLACK_COFFEE) * this.quantity;
         } else if (this.sizeOfCoffee.equals("Grande")) {
-            return ((totalAddIns.size() * ONE_ADD_IN_COST) + GRANDE_BLACK_COFFEE) * this.quantity;
+            price = ((totalAddIns.size() * ONE_ADD_IN_COST) + GRANDE_BLACK_COFFEE) * this.quantity;
         } else {
-            return ((totalAddIns.size() * ONE_ADD_IN_COST) + VENTI_BLACK_COFFEE) * this.quantity;
+            price = ((totalAddIns.size() * ONE_ADD_IN_COST) + VENTI_BLACK_COFFEE) * this.quantity;
         }
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        return Double.parseDouble(paddingZeroes.format(price));
     }
 
     @Override
