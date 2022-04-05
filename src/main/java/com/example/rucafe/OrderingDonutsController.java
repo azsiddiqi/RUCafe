@@ -109,19 +109,26 @@ public class OrderingDonutsController implements Initializable {
 
     @FXML
     void removeFlavor(ActionEvent event) {
+        String donutInformation = listSelectedDonutFlavors.getSelectionModel().getSelectedItem().toString();
+        String[] splitInformation = donutInformation.split(" ");
         MenuItem removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();
-        MenuItem removedDonutType = null;
-        if (removeDonut instanceof CakeDonut) {
-            removedDonutType = (CakeDonut) removeDonut;
-        } else if (removeDonut instanceof DonutHole) {
-            removedDonutType = (DonutHole) removeDonut;
-        } else if (removeDonut instanceof YeastDonut) {
-            removedDonutType = (YeastDonut) removeDonut;
-        }
         price = price - removeDonut.itemPrice();
-        listSelectedDonutFlavors.getItems().remove(listSelectedDonutFlavors.getSelectionModel().getSelectedItem());
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText("$" + paddingZeroes.format(price));
+        listSelectedDonutFlavors.getItems().remove(listSelectedDonutFlavors.getSelectionModel().getSelectedItem());
+        if (splitInformation[0].equals("Strawberry") || splitInformation[0].equals("Vanilla") ||
+                splitInformation[0].equals("Chocolate") || splitInformation[0].equals("Glazed") ||
+                splitInformation[0].equals("Mint")) {
+            yeastDonutFlavors.add(splitInformation[0]);
+        } else if (splitInformation[0].equals("Frosted") || splitInformation[0].equals("Caramel") ||
+                splitInformation[0].equals("Blueberry") || splitInformation[0].equals("Coffee") ||
+                splitInformation[0].equals("Peanut")) {
+            cakeDonutFlavors.add(splitInformation[0]);
+        } else if (splitInformation[0].equals("Mango") || splitInformation[0].equals("Cherry") ||
+                splitInformation[0].equals("Crunchy") || splitInformation[0].equals("Powdered") ||
+                splitInformation[0].equals("Apple")) {
+            donutHoleFlavors.add(splitInformation[0]);
+        }
 
     }
 

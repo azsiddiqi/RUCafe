@@ -34,7 +34,6 @@ public class DonutHole extends MenuItem {
 
     @Override
     public String toString() {
-        return "Quantity: " + this.quantity + " Donut Type: " + DONUT_TYPE + " Flavor: " + this.flavor + " Price: " +
-                this.itemPrice();
+        return this.flavor + " (" + this.quantity + ")";
     }
 }
