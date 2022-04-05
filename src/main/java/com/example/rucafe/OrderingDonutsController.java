@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class OrderingDonutsController implements Initializable {
@@ -24,33 +25,33 @@ public class OrderingDonutsController implements Initializable {
     private ComboBox<String> listQuantities;
 
     @FXML
-    private ListView<String> listSelectedDonutFlavors;
+    private ListView<MenuItem> listSelectedDonutFlavors;
 
     @FXML
     private TextField subTotal;
 
     private Order createOrder = new Order();
 
-    ObservableList<String> yeastDonutFlavors = FXCollections.observableArrayList("a", "b", "c", "d", "e");
+    private ObservableList<String> yeastDonutFlavors;
 
-    ObservableList<String> cakeDonutFlavors = FXCollections.observableArrayList("ef", "g", "h", "i", "e");
+    private ObservableList<String> cakeDonutFlavors;
 
-    ObservableList<String> donutHoleFlavors = FXCollections.observableArrayList("d", "d", "d", "d", "d");
+    private ObservableList<String> donutHoleFlavors;
 
-    ObservableList<String> selectedYeastDonutFlavors = FXCollections.observableArrayList();
+    private String saveYeastDonutQuantity;
 
-    ObservableList<String> selectedCakeDonutFlavors = FXCollections.observableArrayList();
+    private String saveCakeDonutQuantity;
 
-    ObservableList<String> selectedDonutHoleFlavors = FXCollections.observableArrayList();
+    private String saveDonutHoleQuantity;
 
-    String saveYeastDonutQuantity;
-
-    String saveCakeDonutQuantity;
-
-    String saveDonutHoleQuantity;
+    private double price;
 
     @Override
     public void initialize(URL location, ResourceBundle resource){
+        price = 0;
+        yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed", "Mint");
+        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee", "Peanut");
+        donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
         listDonutTypes.getItems().addAll("Yeast Donut", "Cake Donut", "Donut Hole");
         listDonutTypes.getSelectionModel().selectFirst();
         listQuantities.getItems().addAll("1", "2", "3", "4", "5");
@@ -60,18 +61,17 @@ public class OrderingDonutsController implements Initializable {
         saveDonutHoleQuantity = "1";
         subTotal.setText("$0.00");
         listDonutFlavors.setItems(yeastDonutFlavors);
-        listSelectedDonutFlavors.setItems(selectedYeastDonutFlavors);
     }
 
     @FXML
     void addToOrder(ActionEvent event) {
         MenuItem createDonut;
-        if (listDonutTypes.getPromptText().equals("Cake Donut")) {
-            createDonut = new CakeDonut(Integer.parseInt(listQuantities.getPromptText()), "taw");
-        } else if (listDonutTypes.getPromptText().equals("Donut Hole")) {
-            createDonut = new DonutHole(Integer.parseInt(listQuantities.getPromptText()), "strawberry");
-        } else if (listDonutTypes.getPromptText().equals("Yeast Donut")) {
-            createDonut = new YeastDonut(Integer.parseInt(listQuantities.getPromptText()), "strawberry");
+        if (listDonutTypes.getValue().equals("Cake Donut")) {
+            createDonut = new CakeDonut(Integer.parseInt(listQuantities.getValue()), "taw");
+        } else if (listDonutTypes.getValue().equals("Donut Hole")) {
+            createDonut = new DonutHole(Integer.parseInt(listQuantities.getValue()), "strawberry");
+        } else if (listDonutTypes.getValue().equals("Yeast Donut")) {
+            createDonut = new YeastDonut(Integer.parseInt(listQuantities.getValue()), "strawberry");
         }
     }
 
@@ -79,29 +79,49 @@ public class OrderingDonutsController implements Initializable {
     void changeDisplayedItems(ActionEvent event) {
         if (listDonutTypes.getValue().equals("Yeast Donut")) {
             listDonutFlavors.setItems(yeastDonutFlavors);
-            listSelectedDonutFlavors.setItems(selectedYeastDonutFlavors);
             listQuantities.getSelectionModel().select(saveYeastDonutQuantity);
         } else if (listDonutTypes.getValue().equals("Cake Donut")) {
             listDonutFlavors.setItems(cakeDonutFlavors);
-            listSelectedDonutFlavors.setItems(selectedCakeDonutFlavors);
             listQuantities.getSelectionModel().select(saveCakeDonutQuantity);
         } else if (listDonutTypes.getValue().equals("Donut Hole")) {
             listDonutFlavors.setItems(donutHoleFlavors);
-            listSelectedDonutFlavors.setItems(selectedDonutHoleFlavors);
             listQuantities.getSelectionModel().select(saveDonutHoleQuantity);
         }
     }
 
     @FXML
     void chooseFlavor(ActionEvent event) {
-        listSelectedDonutFlavors.getItems().add(listDonutFlavors.getSelectionModel().getSelectedItem());
+        MenuItem addDonut = null;
+        if (listDonutTypes.getValue().equals("Yeast Donut")) {
+            addDonut = new YeastDonut(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
+        } else if (listDonutTypes.getValue().equals("Cake Donut")) {
+            addDonut = new CakeDonut(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
+        } else if (listDonutTypes.getValue().equals("Donut Hole")) {
+            addDonut = new DonutHole(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
+        }
+        price = price + addDonut.itemPrice();
+        listSelectedDonutFlavors.getItems().add(addDonut);
         listDonutFlavors.getItems().remove(listDonutFlavors.getSelectionModel().getSelectedItem());
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        subTotal.setText("$" + paddingZeroes.format(price));
+
     }
 
     @FXML
     void removeFlavor(ActionEvent event) {
-        listDonutFlavors.getItems().add(listSelectedDonutFlavors.getSelectionModel().getSelectedItem());
+        MenuItem removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();
+        MenuItem removedDonutType = null;
+        if (removeDonut instanceof CakeDonut) {
+            removedDonutType = (CakeDonut) removeDonut;
+        } else if (removeDonut instanceof DonutHole) {
+            removedDonutType = (DonutHole) removeDonut;
+        } else if (removeDonut instanceof YeastDonut) {
+            removedDonutType = (YeastDonut) removeDonut;
+        }
+        price = price - removeDonut.itemPrice();
         listSelectedDonutFlavors.getItems().remove(listSelectedDonutFlavors.getSelectionModel().getSelectedItem());
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        subTotal.setText("$" + paddingZeroes.format(price));
 
     }
 

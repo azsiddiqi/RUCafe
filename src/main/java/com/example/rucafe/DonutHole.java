@@ -13,6 +13,10 @@ public class DonutHole extends MenuItem {
         this.flavor = flavor;
     }
 
+    public String getFlavor() {
+        return this.flavor;
+    }
+
     public double itemPrice() {
         return DONUT_HOLE_PRICE * this.quantity;
     }

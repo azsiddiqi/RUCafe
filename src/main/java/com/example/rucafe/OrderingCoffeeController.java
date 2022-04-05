@@ -109,7 +109,7 @@ public class OrderingCoffeeController implements Initializable {
         }
 
         Coffee addCoffee = new Coffee(totalAddIns, listCoffeeSizes.getValue(), Integer.parseInt(listQuantity.getValue()));
-        DecimalFormat PaddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText("$" + PaddingZeroes.format(addCoffee.itemPrice()));
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        subTotal.setText("$" + paddingZeroes.format(addCoffee.itemPrice()));
     }
 }

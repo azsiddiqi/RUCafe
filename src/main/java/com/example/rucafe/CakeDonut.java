@@ -13,6 +13,10 @@ public class CakeDonut extends MenuItem {
         this.flavor = flavor;
     }
 
+    public String getFlavor() {
+        return this.flavor;
+    }
+
     public double itemPrice() {
         return CAKE_DONUT_PRICE * this.quantity;
     }

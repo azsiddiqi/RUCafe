@@ -12,6 +12,10 @@ public class YeastDonut extends MenuItem {
         this.flavor = flavor;
     }
 
+    public String getFlavor() {
+        return this.flavor;
+    }
+
     public double itemPrice() {
         return YEAST_DONUT_PRICE * this.quantity;
     }
@@ -29,8 +33,7 @@ public class YeastDonut extends MenuItem {
 
     @Override
     public String toString() {
-        return "Quantity: " + this.quantity + " Donut Type: " + DONUT_TYPE + " Flavor: " + this.flavor + " Price: " +
-                this.itemPrice();
+        return this.flavor + " (" + this.quantity + ")";
     }
 
 }

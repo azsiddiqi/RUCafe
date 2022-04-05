@@ -49,8 +49,8 @@ public class StoreOrdersController {
             price = price + currentOrder.getTotalMenuItems().get(i).itemPrice();
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
-        DecimalFormat PaddingZeroes = new DecimalFormat("#,##0.00");
-        orderTotal.setText(PaddingZeroes.format(price + price * 0.00625));
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        orderTotal.setText(paddingZeroes.format(price + price * 0.00625));
     }
 
     @FXML
