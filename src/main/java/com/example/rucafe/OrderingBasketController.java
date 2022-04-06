@@ -7,6 +7,11 @@ import javafx.scene.control.TextField;
 
 import java.text.DecimalFormat;
 
+/**
+ This class takes the current order that is being processed, and it can either remove any items from the order or place
+ the order all while displaying the current price of the order.
+ @author Karan Patel, Azaan Siddiqi
+ */
 public class OrderingBasketController  {
 
     @FXML
@@ -26,6 +31,10 @@ public class OrderingBasketController  {
     private Order currentOrder;
 
 
+    /**
+     After the "Your Orders" button is pressed, this method fills the opened window with information pertaining to the
+     current order.
+     */
     public void initializeData(){
         double price = 0;
         currentOrder = mainController.getCurrentOrder();
@@ -40,10 +49,22 @@ public class OrderingBasketController  {
         listOrderItems.getSelectionModel().selectFirst();
     }
 
+
+    /**
+     Sets the reference of the MainController object to the mainController instance variable, which allows for sharing
+     data between the MainController object and the OrderingBasketController object.
+     @param controller the MainController object that is passed from the MainController class.
+     */
     public void setMainController(MainController controller) {
         mainController = controller;
     }
 
+
+    /**
+     Places an order by passing the current order to the allStoreOrders instance variable in the MainController object.
+     Then, it resets the GUI and relevant data fields.
+     @param event An ActionEvent object that occurs when the "Place Order" button is pressed in the "Your Order" GUI.
+     */
     @FXML
     void placeOrder(ActionEvent event) {
         if (listOrderItems.getItems().isEmpty()) {
@@ -58,6 +79,13 @@ public class OrderingBasketController  {
         orderTotal.setText("$0.00");
     }
 
+
+    /**
+     Removes the selected MenuItem object from both the current order and from the ListView object. Then, it
+     recalculates the price.
+     @param event An ActionEvent object that occurs when the "Remove Selected Item" button is pressed in the
+     "Your Order" GUI.
+     */
     @FXML
     void removeSelectedItem(ActionEvent event) {
         if (listOrderItems.getSelectionModel().getSelectedIndex() == -1) {

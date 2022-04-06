@@ -6,6 +6,7 @@ import java.util.ArrayList;
  This class is used to create StoreOrders objects that each contain an arraylist of Order objects. There is a constructor
  that initializes a StoreOrders object, and there is a getter method that returns the arraylist of Order objects. You
  can add an Order object to the arraylist and remove an Order object from the arraylist.
+ @author Karan Patel, Azaan Siddiqi
  */
 public class StoreOrders implements Customizable {
 
