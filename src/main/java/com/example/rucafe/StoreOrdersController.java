@@ -38,6 +38,10 @@ public class StoreOrdersController {
 
     @FXML
     void cancelOrder(ActionEvent event) {
+        if (listOrderItems.getItems().isEmpty() || listOrderNumber.getItems().isEmpty()) {
+            mainController.alertPopUp("There are no orders to cancel!", "There are no orders to cancel!");
+            return;
+        }
         orderTotal.setText("$0.00");
         listOrderItems.getItems().clear();
         mainController.getAllStoreOrders().getTotalOrders().remove(listOrderNumber.getSelectionModel().getSelectedIndex());

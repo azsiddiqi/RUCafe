@@ -7,7 +7,6 @@ public class YeastDonut extends MenuItem {
     private int quantity;
     private String flavor;
     private static final double YEAST_DONUT_PRICE = 1.59;
-    private static final String DONUT_TYPE = "Yeast Donut";
 
     public YeastDonut(int quantity, String flavor) {
         this.quantity = quantity;
@@ -36,7 +35,7 @@ public class YeastDonut extends MenuItem {
 
     @Override
     public String toString() {
-        return this.flavor + " (" + this.quantity + ")";
+        return "Yeast Donut: " + this.flavor + " (" + this.quantity + ")";
     }
 
 }

@@ -15,13 +15,12 @@ public class MainController {
 
     private Stage secondWindow = new Stage();
     private Scene secondView;
-    private FXMLLoader fxmlLoader;
     private StoreOrders allStoreOrders = new StoreOrders();
     private Order currentOrder = new Order();
 
     @FXML
     void openOrderingBasketView(ActionEvent event) throws IOException {
-        fxmlLoader = new FXMLLoader(getClass().getResource("OrderingBasketView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderingBasketView.fxml"));
         secondView = new Scene(fxmlLoader.load(), 500, 554);
         secondWindow.setTitle("Ordering Basket");
         secondWindow.setScene(secondView);
@@ -33,7 +32,7 @@ public class MainController {
 
     @FXML
     void openOrderingCoffeeView(ActionEvent event) throws IOException {
-        fxmlLoader = new FXMLLoader(getClass().getResource("OrderingCoffeeView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderingCoffeeView.fxml"));
         secondView = new Scene(fxmlLoader.load(), 500, 554);
         secondWindow.setTitle("Ordering Coffee");
         secondWindow.setScene(secondView);
@@ -44,7 +43,7 @@ public class MainController {
 
     @FXML
     void openOrderingDonutsView(ActionEvent event) throws IOException {
-        fxmlLoader = new FXMLLoader(MainController.class.getResource("OrderingDonutsView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("OrderingDonutsView.fxml"));
         secondView = new Scene(fxmlLoader.load(), 500, 554);
         secondWindow.setTitle("Ordering Donuts");
         secondWindow.setScene(secondView);
@@ -55,7 +54,7 @@ public class MainController {
 
     @FXML
     void openStoreOrdersView(ActionEvent event) throws IOException{
-        fxmlLoader = new FXMLLoader(MainController.class.getResource("StoreOrdersView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("StoreOrdersView.fxml"));
         secondView = new Scene(fxmlLoader.load(), 500, 554);
         secondWindow.setTitle("Store Orders");
         secondWindow.setScene(secondView);

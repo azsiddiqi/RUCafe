@@ -75,7 +75,6 @@ public class Coffee extends MenuItem implements Customizable {
 
     @Override
     public String toString() {
-        return "Quantity: " + this.quantity + " Size: " + this.sizeOfCoffee + " Add-ins: " + this.totalAddIns.toString()
-                + " Price: " + this.itemPrice();
+        return "Coffee: (" + this.quantity + ") " + this.sizeOfCoffee + " " + totalAddIns.toString();
     }
 }

@@ -37,6 +37,7 @@ public class OrderingBasketController  {
         subTotal.setText(paddingZeroes.format(price));
         salesTax.setText(paddingZeroes.format(price * 0.06625));
         orderTotal.setText(paddingZeroes.format(price + price * 0.06625));
+        listOrderItems.getSelectionModel().selectFirst();
     }
 
     public void setMainController(MainController controller) {
@@ -45,6 +46,10 @@ public class OrderingBasketController  {
 
     @FXML
     void placeOrder(ActionEvent event) {
+        if (listOrderItems.getItems().isEmpty()) {
+            mainController.alertPopUp("No items in the shopping cart!", "No items in the shopping cart!");
+            return;
+        }
         mainController.getAllStoreOrders().add(mainController.getCurrentOrder());
         mainController.setCurrentOrder(new Order());
         listOrderItems.getItems().clear();
@@ -55,6 +60,10 @@ public class OrderingBasketController  {
 
     @FXML
     void removeSelectedItem(ActionEvent event) {
+        if (listOrderItems.getSelectionModel().getSelectedIndex() == -1) {
+            mainController.alertPopUp("No item selected!", "No item selected!");
+            return;
+        }
         double price = 0;
         currentOrder.remove(currentOrder.getTotalMenuItems().get(listOrderItems.getSelectionModel().getSelectedIndex()));
         listOrderItems.getItems().remove(listOrderItems.getSelectionModel().getSelectedIndex());

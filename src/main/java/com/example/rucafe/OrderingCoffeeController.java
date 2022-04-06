@@ -73,38 +73,38 @@ public class OrderingCoffeeController implements Initializable {
 
     @FXML
     void updateSubTotal(ActionEvent event) {
-        if (cream.isSelected() == true) {
+        if (cream.isSelected() == true && !totalAddIns.contains("Cream")) {
             totalAddIns.add("Cream");
         }
-        else if (cream.isSelected() == false) {
+        else if (cream.isSelected() == false && totalAddIns.contains("Cream")) {
             totalAddIns.remove("Cream");
         }
 
-        if (syrup.isSelected() == true) {
+        if (syrup.isSelected() == true && !totalAddIns.contains("Syrup")) {
             totalAddIns.add("Syrup");
         }
-        else if (syrup.isSelected() == false){
+        else if (syrup.isSelected() == false && totalAddIns.contains("Syrup")){
             totalAddIns.remove("Syrup");
         }
 
-        if (milk.isSelected() == true) {
+        if (milk.isSelected() == true && !totalAddIns.contains("Milk")) {
             totalAddIns.add("Milk");
         }
-        else if (milk.isSelected() == false){
+        else if (milk.isSelected() == false && totalAddIns.contains("Milk")){
             totalAddIns.remove("Milk");
         }
 
-        if (caramel.isSelected() == true) {
+        if (caramel.isSelected() == true && !totalAddIns.contains("Caramel")) {
             totalAddIns.add("Caramel");
         }
-        else if (caramel.isSelected() == false){
+        else if (caramel.isSelected() == false && totalAddIns.contains("Caramel")){
             totalAddIns.remove("Caramel");
         }
 
-        if (whippedCream.isSelected() == true) {
+        if (whippedCream.isSelected() == true && !totalAddIns.contains("Whipped Cream")) {
             totalAddIns.add("Whipped Cream");
         }
-        else if (whippedCream.isSelected() == false){
+        else if (whippedCream.isSelected() == false && totalAddIns.contains("Whipped Cream")){
             totalAddIns.remove("Whipped Cream");
         }
 
