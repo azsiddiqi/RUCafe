@@ -32,6 +32,19 @@ public class Order implements Customizable {
 
 
     /**
+     Returns the sub total price of a specific order by calculating it based on all the items of that order.
+     @return the sub total price of a specific order.
+     */
+    public double calculateSubTotal() {
+        double subTotal = 0;
+        for (int i = 0; i < totalMenuItems.size(); i++) {
+            subTotal = subTotal + totalMenuItems.get(i).itemPrice();
+        }
+        return subTotal;
+    }
+
+
+    /**
      Adds a MenuItem object to the arraylist of MenuItem objects for a specific Order object.
      @param obj the MenuItem object to be added to the arraylist of MenuItem objects.
      @return true if the object in the parameter is a MenuItem object and it was successfully added to the arraylist,

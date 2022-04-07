@@ -6,6 +6,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
 
@@ -28,6 +32,8 @@ public class StoreOrdersController {
     private MainController mainController;
 
     private Order currentOrder;
+
+    private static final double SALES_TAX = 0.06625;
 
 
     /**
@@ -92,19 +98,36 @@ public class StoreOrdersController {
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        orderTotal.setText("$" + paddingZeroes.format(price + price * 0.06625));
+        orderTotal.setText("$" + paddingZeroes.format(price + price * SALES_TAX));
     }
 
 
     /**
      Exports all the information regarding each store order, such as its order number, items, and total price, to a
-     text file
+     text file.
      @param event An ActionEvent object that occurs when the "Export Orders" button is pressed on the "Store Orders"
      GUI.
      */
     @FXML
-    void exportOrders(ActionEvent event) {
-
+    void exportOrders (ActionEvent event) throws IOException {
+        if (mainController.getAllStoreOrders().getTotalOrders().size() == 0) {
+            mainController.alertPopUp("No orders to export!", "No orders to export!");
+        }
+        File file = new File("ExportedOrders.txt");
+        FileWriter fileWriter = new FileWriter(file);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
+        for (int i = 0; i < mainController.getAllStoreOrders().getTotalOrders().size(); i++) {
+            printWriter.println("Order Number: " + (i + 1));
+            printWriter.println("Total: $" + Double.parseDouble((paddingZeroes.format(mainController.
+                    getAllStoreOrders().getTotalOrders().get(i).calculateSubTotal() * SALES_TAX))));
+            for (int j = 0; j < mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().size(); j++) {
+                printWriter.println(" " + mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().get(j).toString());
+            }
+            printWriter.println();
+        }
+        printWriter.close();
+        fileWriter.close();
     }
 
 }

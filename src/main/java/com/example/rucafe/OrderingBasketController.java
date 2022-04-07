@@ -30,6 +30,8 @@ public class OrderingBasketController  {
 
     private Order currentOrder;
 
+    private static final double SALES_TAX = 0.06625;
+
 
     /**
      After the "Your Orders" button is pressed in the main menu, this method fills the opened window with information
@@ -45,8 +47,8 @@ public class OrderingBasketController  {
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText("$" + paddingZeroes.format(price));
-        salesTax.setText("$" + paddingZeroes.format(price * 0.06625));
-        orderTotal.setText("$" + paddingZeroes.format(price + price * 0.06625));
+        salesTax.setText("$" + paddingZeroes.format(price * SALES_TAX));
+        orderTotal.setText("$" + paddingZeroes.format(price + price * SALES_TAX));
         listOrderItems.getSelectionModel().selectFirst();
     }
 
@@ -101,8 +103,8 @@ public class OrderingBasketController  {
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText(paddingZeroes.format(price));
-        salesTax.setText(paddingZeroes.format(price * 0.06625));
-        orderTotal.setText(paddingZeroes.format(price + price * 0.06625));
+        salesTax.setText(paddingZeroes.format(price * SALES_TAX));
+        orderTotal.setText(paddingZeroes.format(price + price * SALES_TAX));
 
     }
 
