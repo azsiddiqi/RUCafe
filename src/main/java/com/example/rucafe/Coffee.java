@@ -45,8 +45,8 @@ public class Coffee extends MenuItem implements Customizable {
     public boolean add(Object obj){
         if (obj instanceof String) {
             String addInName = (String) obj;
-            if (addInName.equals("Cream") || addInName.equals("Syrup") || addInName.equals("Milk") ||
-                    addInName.equals("Caramel") || addInName.equals("Whipped Cream")) {
+            if ((addInName.equals("Cream") || addInName.equals("Syrup") || addInName.equals("Milk") ||
+                    addInName.equals("Caramel") || addInName.equals("Whipped Cream")) && !totalAddIns.contains(addInName)) {
                 totalAddIns.add(addInName);
                 return true;
             }
@@ -58,13 +58,13 @@ public class Coffee extends MenuItem implements Customizable {
     /**
      Removes a specified add-in from the Coffee item totalAddIns ArrayList.
      @param obj the add-in to be removed from the totalAddIns ArrayList.
-     @return true if the object is a valid add-in and it was successfully added, false otherwise.
+     @return true if the object is a valid add-in and it was successfully removed, false otherwise.
      */
     public boolean remove(Object obj){
         if (obj instanceof String) {
             String addInName = (String) obj;
-            if (addInName.equals("Cream") || addInName.equals("Syrup") || addInName.equals("Milk") ||
-                    addInName.equals("Caramel") || addInName.equals("Whipped Cream")) {
+            if ((addInName.equals("Cream") || addInName.equals("Syrup") || addInName.equals("Milk") ||
+                    addInName.equals("Caramel") || addInName.equals("Whipped Cream")) && totalAddIns.contains(addInName)) {
                 totalAddIns.remove(addInName);
                 return true;
             }
