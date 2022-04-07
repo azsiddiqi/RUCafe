@@ -16,6 +16,7 @@ public interface Customizable {
      */
     boolean add(Object obj);
 
+
     /**
      This method is used to remove an object from somewhere.
      @param obj the object to be removed from somewhere.
