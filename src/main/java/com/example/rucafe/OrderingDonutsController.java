@@ -30,7 +30,7 @@ public class OrderingDonutsController implements Initializable {
     private ComboBox<String> listQuantities;
 
     @FXML
-    private ListView<MenuItem> listSelectedDonutFlavors;
+    private ListView<Donut> listSelectedDonutFlavors;
 
     @FXML
     private TextField subTotal;
@@ -116,14 +116,8 @@ public class OrderingDonutsController implements Initializable {
             mainController.alertPopUp("No item selected!", "No item selected!");
             return;
         }
-        MenuItem addDonut = null;
-        if (listDonutTypes.getValue().equals("Yeast Donut")) {
-            addDonut = new YeastDonut(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
-        } else if (listDonutTypes.getValue().equals("Cake Donut")) {
-            addDonut = new CakeDonut(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
-        } else if (listDonutTypes.getValue().equals("Donut Hole")) {
-            addDonut = new DonutHole(Integer.parseInt(listQuantities.getValue()),listDonutFlavors.getSelectionModel().getSelectedItem());
-        }
+        Donut addDonut = new Donut(Integer.parseInt(listQuantities.getValue()),
+                listDonutFlavors.getSelectionModel().getSelectedItem(), listDonutTypes.getValue());
         price = price + addDonut.itemPrice();
         listSelectedDonutFlavors.getItems().add(addDonut);
         listDonutFlavors.getItems().remove(listDonutFlavors.getSelectionModel().getSelectedItem());
@@ -138,25 +132,17 @@ public class OrderingDonutsController implements Initializable {
             mainController.alertPopUp("No item selected!", "No item selected!");
             return;
         }
-        String donutInformation = listSelectedDonutFlavors.getSelectionModel().getSelectedItem().toString();
-        String[] splitInformation = donutInformation.split(" ");
-        MenuItem removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();
+        Donut removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();
         price = price - removeDonut.itemPrice();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText("$" + paddingZeroes.format(price));
         listSelectedDonutFlavors.getItems().remove(listSelectedDonutFlavors.getSelectionModel().getSelectedItem());
-        if (splitInformation[0].equals("Strawberry") || splitInformation[0].equals("Vanilla") ||
-                splitInformation[0].equals("Chocolate") || splitInformation[0].equals("Glazed") ||
-                splitInformation[0].equals("Mint")) {
-            yeastDonutFlavors.add(splitInformation[0]);
-        } else if (splitInformation[0].equals("Frosted") || splitInformation[0].equals("Caramel") ||
-                splitInformation[0].equals("Blueberry") || splitInformation[0].equals("Coffee") ||
-                splitInformation[0].equals("Peanut")) {
-            cakeDonutFlavors.add(splitInformation[0]);
-        } else if (splitInformation[0].equals("Mango") || splitInformation[0].equals("Cherry") ||
-                splitInformation[0].equals("Crunchy") || splitInformation[0].equals("Powdered") ||
-                splitInformation[0].equals("Apple")) {
-            donutHoleFlavors.add(splitInformation[0]);
+        if (removeDonut.getDonutType().equals("Yeast Donut")) {
+            yeastDonutFlavors.add(removeDonut.getFlavor());
+        } else if (removeDonut.getDonutType().equals("Cake Donut")) {
+            cakeDonutFlavors.add(removeDonut.getFlavor());
+        } else if (removeDonut.getDonutType().equals("Donut Hole")) {
+            donutHoleFlavors.add(removeDonut.getFlavor());
         }
 
     }

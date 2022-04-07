@@ -43,9 +43,9 @@ public class OrderingBasketController  {
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText(paddingZeroes.format(price));
-        salesTax.setText(paddingZeroes.format(price * 0.06625));
-        orderTotal.setText(paddingZeroes.format(price + price * 0.06625));
+        subTotal.setText("$" + paddingZeroes.format(price));
+        salesTax.setText("$" + paddingZeroes.format(price * 0.06625));
+        orderTotal.setText("$" + paddingZeroes.format(price + price * 0.06625));
         listOrderItems.getSelectionModel().selectFirst();
     }
 
