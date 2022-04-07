@@ -49,7 +49,7 @@ public class Order implements Customizable {
 
     /**
      Removes a MenuItem object from the arraylist of MenuItem objects for a specific Order object.
-     @param obj The MenuItem object to be removed from the arraylist of MenuItem objects.
+     @param obj the MenuItem object to be removed from the arraylist of MenuItem objects.
      @return true if the object in the parameter is a MenuItem object and it was successfully removed from the
      arraylist, false otherwise.
      */

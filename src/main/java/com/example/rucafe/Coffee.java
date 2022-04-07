@@ -3,11 +3,13 @@ package com.example.rucafe;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+
 /**
- * This class extends the menuItem class and is a blueprint for the coffee menu item. It includes data such as the size,
- * quantity, and add-ins for a coffee order and has functions that return the price of the order, an equals method, and a
- * tostring method. Along with this the class has the capacity to add and remove add-ins from the coffee object.
- * @author Azaan Siddiqi, Karan Patel
+ This class extends the MenuItem class, implements the Customizable interface, and is a blueprint for the coffee menu
+ item. It includes data such as the size of the cup, quantity, and add-ins for a coffee order. It has functions that
+ return the price of the coffee, an equals method, and a toString method. Along with this the class has the capacity to
+ add and remove add-ins from the coffee object.
+ @author Azaan Siddiqi, Karan Patel
  */
 public class Coffee extends MenuItem implements Customizable {
 
@@ -21,11 +23,12 @@ public class Coffee extends MenuItem implements Customizable {
     private static final double VENTI_BLACK_COFFEE = 2.89;
     private static final double ONE_ADD_IN_COST = 0.30;
 
+
     /**
-     * Coffee menuItem constructor taking in specified parameters denoting add-ins, size, and quantity.
-     * @param totalAddIns
-     * @param sizeOfCoffee
-     * @param quantity
+     Coffee menuItem constructor taking in specified parameters denoting add-ins, size, and quantity.
+     @param totalAddIns an arraylist of strings that contains all the add-ins of a coffee object.
+     @param sizeOfCoffee the size of the cup of the coffee.
+     @param quantity the number of coffees being ordered.
      */
     public Coffee(ArrayList<String> totalAddIns, String sizeOfCoffee, int quantity) {
         this.totalAddIns = totalAddIns;
@@ -33,10 +36,11 @@ public class Coffee extends MenuItem implements Customizable {
         this.quantity = quantity;
     }
 
+
     /**
-     * Adds a specified add-in to the Coffee item totalAddIns arrayList.
-     * @param obj
-     * @return True if valid add-in False otherwise
+     Adds a specified add-in to the Coffee item totalAddIns ArrayList.
+     @param obj the add-in to be added to the totalAddIns ArrayList.
+     @return true if the object is a valid add-in and it was successfully added, false otherwise.
      */
     public boolean add(Object obj){
         if (obj instanceof String) {
@@ -50,10 +54,11 @@ public class Coffee extends MenuItem implements Customizable {
         return false;
     }
 
+
     /**
-     * Removes a specified add-in from Coffee item totalAddIns arrayList.
-     * @param obj
-     * @return true if valid add-in false otherwise
+     Removes a specified add-in from the Coffee item totalAddIns ArrayList.
+     @param obj the add-in to be removed from the totalAddIns ArrayList.
+     @return true if the object is a valid add-in and it was successfully added, false otherwise.
      */
     public boolean remove(Object obj){
         if (obj instanceof String) {
@@ -67,9 +72,10 @@ public class Coffee extends MenuItem implements Customizable {
         return false;
     }
 
+
     /**
      Returns the price of a Coffee object, calculated based on size, number of add-ins, and quantity.
-     @return double that is the price of the Coffee object.
+     @return the price of a Coffee object.
      */
     @Override
     public double itemPrice() {
@@ -87,11 +93,12 @@ public class Coffee extends MenuItem implements Customizable {
         return Double.parseDouble(paddingZeroes.format(price));
     }
 
+
     /**
-     * Compares totalAddIns and sizeOfCoffee instance variables of two different coffee objects to see if coffee type is
-     * the same.
-     * @param obj
-     * @return true if equals false otherwise
+     Compares totalAddIns and sizeOfCoffee instance variables of two different coffee objects to see if coffee type is
+     the same.
+     @param obj the Coffee object to be compared to the specified Coffee object.
+     @return true if both coffee objects are equal, false otherwise.
      */
     @Override
     public boolean equals(Object obj){
@@ -105,9 +112,10 @@ public class Coffee extends MenuItem implements Customizable {
         return false;
     }
 
+
     /**
-     * Represents coffee item as a string.
-     * @return String representing coffee item.
+     Returns a string representation of a coffee object.
+     @return string representing a coffee item.
      */
     @Override
     public String toString() {
