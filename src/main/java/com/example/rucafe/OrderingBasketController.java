@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 
 /**
  This class takes the current order that is being processed, and it can either remove any items from the order or place
- the order all while displaying the current price of the order.
+ the order all while displaying the current items and price of the order.
  @author Karan Patel, Azaan Siddiqi
  */
 public class OrderingBasketController  {
@@ -32,8 +32,9 @@ public class OrderingBasketController  {
 
 
     /**
-     After the "Your Orders" button is pressed, this method fills the opened window with information pertaining to the
-     current order.
+     After the "Your Orders" button is pressed in the main menu, this method fills the opened window with information
+     pertaining to the current order. It fills the listOrderItems ListView object with all the items in the current
+     order, and it sets the sub total, sales tax, and order total.
      */
     public void initializeData(){
         double price = 0;
@@ -63,7 +64,7 @@ public class OrderingBasketController  {
     /**
      Places an order by passing the current order to the allStoreOrders instance variable in the MainController object.
      Then, it resets the GUI and relevant data fields.
-     @param event An ActionEvent object that occurs when the "Place Order" button is pressed in the "Your Order" GUI.
+     @param event An ActionEvent object that occurs when the "Place Order" button is pressed on the "Your Order" GUI.
      */
     @FXML
     void placeOrder(ActionEvent event) {
@@ -83,7 +84,7 @@ public class OrderingBasketController  {
     /**
      Removes the selected MenuItem object from both the current order and from the ListView object. Then, it
      recalculates the price.
-     @param event An ActionEvent object that occurs when the "Remove Selected Item" button is pressed in the
+     @param event An ActionEvent object that occurs when the "Remove Selected Item" button is pressed on the
      "Your Order" GUI.
      */
     @FXML

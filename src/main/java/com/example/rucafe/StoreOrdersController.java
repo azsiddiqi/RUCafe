@@ -8,6 +8,12 @@ import javafx.scene.control.TextField;
 
 import java.text.DecimalFormat;
 
+
+/**
+ This class maintains all the store's orders by either canceling any of the orders, switching the order that is being
+ displayed, or exporting the orders to a text file.
+ @author Karan Patel, Azaan Siddiqi
+ */
 public class StoreOrdersController {
 
     @FXML
@@ -24,6 +30,11 @@ public class StoreOrdersController {
     private Order currentOrder;
 
 
+    /**
+     After the "Store Orders" button is pressed in the main menu, this method fills the listOrderNumber ComboBox object
+     with as many numbers as there are saved orders, starting from 1. It also sets the total to $0.00 and selects the
+     first number to be displayed on the listOrderNumber ComboBox.
+     */
     public void initializeData() {
         orderTotal.setText("$0.00");
         for (int i = 0; i < mainController.getAllStoreOrders().getTotalOrders().size(); i++) {
@@ -32,10 +43,22 @@ public class StoreOrdersController {
         listOrderNumber.getSelectionModel().selectFirst();
     }
 
+
+    /**
+     Sets the reference of the MainController object to the mainController instance variable, which allows for sharing
+     data between the MainController object and the StoreOrdersController object.
+     * @param controller the MainController object that is passed from the MainController class.
+     */
     public void setMainController(MainController controller) {
         mainController = controller;
     }
 
+
+    /**
+     Cancels the current order that is being displayed on the "Store Orders" GUI by removing it from the allStoreOrders
+     instance variable in the MainController object, and clearing any information related to that order from the GUI.
+     @param event An ActionEvent object that occurs when the "Cancel Order" button is pressed on the "Store Orders" GUI.
+     */
     @FXML
     void cancelOrder(ActionEvent event) {
         if (listOrderItems.getItems().isEmpty() || listOrderNumber.getItems().isEmpty()) {
@@ -49,6 +72,13 @@ public class StoreOrdersController {
         listOrderNumber.getSelectionModel().selectFirst();
     }
 
+
+    /**
+     When another number is selected in the listOrderNumber ComboBox object, this method lists the items related to that
+     order number as well as the total price of that order.
+     @param event An ActionEvent object that occurs when another number is selected in the listOrderNumber ComboBox
+     object on the "Store Orders" GUI.
+     */
     @FXML
     void displayNewOrder(ActionEvent event) {
         double price = 0;
@@ -65,6 +95,13 @@ public class StoreOrdersController {
         orderTotal.setText("$" + paddingZeroes.format(price + price * 0.06625));
     }
 
+
+    /**
+     Exports all the information regarding each store order, such as its order number, items, and total price, to a
+     text file
+     @param event An ActionEvent object that occurs when the "Export Orders" button is pressed on the "Store Orders"
+     GUI.
+     */
     @FXML
     void exportOrders(ActionEvent event) {
 
