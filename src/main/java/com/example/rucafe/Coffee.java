@@ -47,7 +47,7 @@ public class Coffee extends MenuItem implements Customizable {
 
     @Override
     public double itemPrice() {
-        double price = 0;
+        double price;
         if (this.sizeOfCoffee.equals("Short")) {
             price = ((totalAddIns.size() * ONE_ADD_IN_COST) + SHORT_BLACK_COFFEE) * this.quantity;
         } else if (this.sizeOfCoffee.equals("Tall")) {
