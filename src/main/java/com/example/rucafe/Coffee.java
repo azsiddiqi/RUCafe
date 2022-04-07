@@ -88,7 +88,7 @@ public class Coffee extends MenuItem implements Customizable {
     }
 
     /**
-     * Compares totalAddIns and sizeOfCoffee of two different coffee objects to see if coffee type is the same.
+     * Compares totalAddIns and sizeOfCoffee instance variables of two different coffee objects to see if coffee type is the same.
      * @param obj
      * @return true if equals false otherwise
      */
