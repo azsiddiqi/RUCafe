@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 /**
  This class allows the user to order coffee with specifications to the size, quantity, and add-ins of the coffee order.
- It has a method that adds the coffee order to the users order. seen in "Your Orders, and a method that continuously
+ It has a method that adds the coffee order to the users order. seen in "Your Orders", and a method that continuously
  updates and displays the subtotal of the user's coffee order.
  */
 public class OrderingCoffeeController implements Initializable {
