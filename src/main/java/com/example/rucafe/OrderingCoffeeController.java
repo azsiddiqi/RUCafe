@@ -98,6 +98,8 @@ public class OrderingCoffeeController implements Initializable {
         listCoffeeSizes.getSelectionModel().selectFirst();
         listQuantity.getSelectionModel().selectFirst();
         subTotal.setText("$1.69");
+        mainController.alertPopUp("Order added!", "Coffee(s) successfully added to order! Thank you!", "Information");
+
     }
 
 

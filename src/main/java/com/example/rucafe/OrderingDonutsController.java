@@ -75,6 +75,10 @@ public class OrderingDonutsController implements Initializable {
 
     @FXML
     void addToOrder(ActionEvent event) {
+        if (listSelectedDonutFlavors.getItems().isEmpty()) {
+            mainController.alertPopUp("Failed to add to order!", "No donut(s) selected!", "Error");
+            return;
+        }
         for (int i = 0; i < listSelectedDonutFlavors.getItems().size(); i++) {
             mainController.getCurrentOrder().add(listSelectedDonutFlavors.getItems().get(i));
         }
@@ -90,6 +94,7 @@ public class OrderingDonutsController implements Initializable {
         listDonutFlavors.getSelectionModel().selectFirst();
         listQuantities.getSelectionModel().select(saveYeastDonutQuantity);
         subTotal.setText("$0.00");
+        mainController.alertPopUp("Order added!", "Donut(s) successfully added to order! Thank you!", "Information");
     }
 
     @FXML
@@ -113,7 +118,7 @@ public class OrderingDonutsController implements Initializable {
     @FXML
     void chooseFlavor(ActionEvent event) {
         if (listDonutFlavors.getSelectionModel().getSelectedIndex() == -1) {
-            mainController.alertPopUp("No item selected!", "No item selected!");
+            mainController.alertPopUp("No item selected!", "An item has not been selected!", "Error");
             return;
         }
         Donut addDonut = new Donut(Integer.parseInt(listQuantities.getValue()),
@@ -129,7 +134,7 @@ public class OrderingDonutsController implements Initializable {
     @FXML
     void removeFlavor(ActionEvent event) {
         if (listSelectedDonutFlavors.getSelectionModel().getSelectedIndex() == -1) {
-            mainController.alertPopUp("No item selected!", "No item selected!");
+            mainController.alertPopUp("No item selected!", "An item has not been selected!", "Error");
             return;
         }
         Donut removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();

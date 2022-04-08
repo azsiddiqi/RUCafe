@@ -63,9 +63,15 @@ public class MainController {
         storeOrdersController.initializeData();
     }
 
-    public void alertPopUp(String titleOfWindow, String contentInsideWindow) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titleOfWindow);
+    public void alertPopUp(String headerMessage, String contentInsideWindow, String typeOfAlert) {
+        Alert alert = null;
+        if (typeOfAlert.equals("Error")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+        } else if (typeOfAlert.equals("Information")) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setTitle(typeOfAlert);
+        alert.setHeaderText(headerMessage);
         alert.setContentText(contentInsideWindow);
         Optional<ButtonType> finalResult = alert.showAndWait();
     }

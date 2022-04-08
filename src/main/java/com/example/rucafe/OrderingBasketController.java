@@ -71,7 +71,7 @@ public class OrderingBasketController  {
     @FXML
     void placeOrder(ActionEvent event) {
         if (listOrderItems.getItems().isEmpty()) {
-            mainController.alertPopUp("No items in the shopping cart!", "No items in the shopping cart!");
+            mainController.alertPopUp("Failed to place order!", "No items in the shopping cart!", "Error");
             return;
         }
         mainController.getAllStoreOrders().add(mainController.getCurrentOrder());
@@ -80,6 +80,8 @@ public class OrderingBasketController  {
         subTotal.setText("$0.00");
         salesTax.setText("$0.00");
         orderTotal.setText("$0.00");
+        mainController.alertPopUp("Order placed!", "Order successfully placed! Thank you!", "Information");
+
     }
 
 
@@ -92,7 +94,7 @@ public class OrderingBasketController  {
     @FXML
     void removeSelectedItem(ActionEvent event) {
         if (listOrderItems.getSelectionModel().getSelectedIndex() == -1) {
-            mainController.alertPopUp("No item selected!", "No item selected!");
+            mainController.alertPopUp("Failed to remove selected item!", "No item selected!", "Error");
             return;
         }
         double price = 0;
@@ -105,6 +107,8 @@ public class OrderingBasketController  {
         subTotal.setText(paddingZeroes.format(price));
         salesTax.setText(paddingZeroes.format(price * SALES_TAX));
         orderTotal.setText(paddingZeroes.format(price + price * SALES_TAX));
+        mainController.alertPopUp("Removed selected item!", "Item successfully removed!", "Information");
+
 
     }
 
