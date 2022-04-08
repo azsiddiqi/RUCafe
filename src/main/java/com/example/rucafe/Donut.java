@@ -2,11 +2,11 @@ package com.example.rucafe;
 
 import java.text.DecimalFormat;
 
+
 /**
- This class extends the MenuItem class, implements the Customizable interface, and is a blueprint for the donut menu
- item. It includes data such as the quantity, flavor, and type of the donuts. It has functions that
- return the price of the donut, an equals method, and a toString method. Along with this the class has getters for the
- donut type and flavor.
+ This class extends the MenuItem class and is a blueprint for the donut menu item. It includes data such as the
+ quantity, flavor, and type of the donuts. It has functions that return the price of the donut, an equals method, and a
+ toString method. Along with this the class has getter methods for the donut type and flavor.
  @author Azaan Siddiqi, Karan Patel
  */
 public class Donut extends MenuItem {
@@ -18,11 +18,12 @@ public class Donut extends MenuItem {
     private static final double CAKE_DONUT_PRICE = 1.79;
     private static final double DONUT_HOLE_PRICE = 0.39;
 
+
     /**
-     * Donut menuItem constructor taking in quantity, flavor, and donut type as parameters.
-     * @param quantity amount of donuts being ordered.
-     * @param flavor String denoting the flavor of the donut.
-     * @param donutType String denoting the type of donut being ordered.
+     Donut menuItem constructor taking in quantity, flavor, and donut type as parameters.
+     @param quantity amount of donuts being ordered.
+     @param flavor String denoting the flavor of the donut.
+     @param donutType String denoting the type of donut being ordered.
      */
     public Donut(int quantity, String flavor, String donutType) {
         this.quantity = quantity;
@@ -30,25 +31,28 @@ public class Donut extends MenuItem {
         this.donutType = donutType;
     }
 
+
     /**
-     * Returns the flavor of a specific donut object.
-     * @return flavor instance variable of donut object.
+     Returns the flavor of a specific donut object.
+     @return flavor instance variable of donut object.
      */
     public String getFlavor() {
         return this.flavor;
     }
 
+
     /**
-     * Returns the type for a specific donut object.
-     * @return Donut type instance variable of donut object.
+     Returns the type for a specific donut object.
+     @return Donut type instance variable of donut object.
      */
     public String getDonutType() {
         return this.donutType;
     }
 
+
     /**
-     *Returns the price of a Donut object, calculated based on donut type and quantity.
-     *@return the price of a Donut object.
+     Returns the price of a Donut object, calculated based on donut type and quantity.
+     @return the price of a Donut object.
      */
     @Override
     public double itemPrice() {
@@ -61,6 +65,7 @@ public class Donut extends MenuItem {
             return Double.parseDouble(paddingZeroes.format(DONUT_HOLE_PRICE * this.quantity));
         }
     }
+
 
     /**
      *
@@ -79,9 +84,10 @@ public class Donut extends MenuItem {
         return false;
     }
 
+
     /**
-     * Returns a string representation of the Donut object.
-     * @return string representing a donut item.
+     Returns a string representation of a Donut object that its type, flavor, and quantity.
+     @return string representing a donut item.
      */
     @Override
     public String toString() {

@@ -114,7 +114,7 @@ public class Coffee extends MenuItem implements Customizable {
 
 
     /**
-     Returns a string representation of a coffee object.
+     Returns a string representation of a coffee object that includes its quantity, size of the cup, and add-ins.
      @return string representing a coffee item.
      */
     @Override
