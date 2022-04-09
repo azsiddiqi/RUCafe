@@ -48,7 +48,6 @@ public class OrderingBasketController  {
         subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
         salesTax.setText("$" + paddingZeroes.format(calculatedSubTotal * SALES_TAX));
         orderTotal.setText("$" + paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
-        listOrderItems.getSelectionModel().selectFirst();
     }
 
 
@@ -102,6 +101,7 @@ public class OrderingBasketController  {
         subTotal.setText(paddingZeroes.format(calculatedSubTotal));
         salesTax.setText(paddingZeroes.format(calculatedSubTotal * SALES_TAX));
         orderTotal.setText(paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
+        listOrderItems.getSelectionModel().clearSelection();
         mainController.alertPopUp("Removed selected item!", "Item successfully removed!", "Information");
     }
 
