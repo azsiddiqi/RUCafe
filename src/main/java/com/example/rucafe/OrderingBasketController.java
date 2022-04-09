@@ -34,7 +34,7 @@ public class OrderingBasketController  {
 
 
     /**
-     After the "Your Orders" button is pressed in the main menu, this method fills the opened window with information
+     After the "Your Order" button is pressed in the main menu, this method fills the opened window with information
      pertaining to the current order. It fills the listOrderItems ListView object with all the items in the current
      order, and it sets the sub total, sales tax, and order total.
      */

@@ -15,9 +15,10 @@ import java.util.ResourceBundle;
 
 /**
  This class allows the user to order coffee with specifications to the size, quantity, and add-ins of the coffee order.
- It has a method that adds the coffee order to the users order and makes it displayed in the "Your Orders" scene. It also
- has a method that continuously updates and displays the subtotal of the user's current coffee order when changes are
- made to it.
+ It has a method that adds the coffee order to the user's order and makes it displayed in the "Your Orders" scene. It
+ also has a method that continuously updates and displays the subtotal of the user's current coffee order when changes
+ are made to it. There is also an initialize method that initializes the data and a setter method that sets the
+ mainController instance variable.
  @author Karan Patel, Azaan Siddiqi
  */
 public class OrderingCoffeeController implements Initializable {
@@ -53,10 +54,10 @@ public class OrderingCoffeeController implements Initializable {
 
     /**
      After the "Order Coffee" button is pressed in the main menu, this method initializes the data fields in the
-     "Order Coffee" GUI. It sets the coffee size to "Short" and the quantity to 1, while not selecting any add-ins.
+     "Ordering Coffee" GUI. It sets the coffee size to "Short" and the quantity to 1, while not selecting any add-ins.
      Then it displays the subtotal for this default coffee.
-     @param location
-     @param resource
+     @param location Resolves relative paths for the root object, null otherwise if the location is unknown.
+     @param resource Localizes the root object, null otherwise if the root object wasn't localized.
      */
     @Override
     public void initialize(URL location, ResourceBundle resource){
@@ -80,8 +81,8 @@ public class OrderingCoffeeController implements Initializable {
 
 
     /**
-     Adds the specified Coffee object to the MainController's currentOrder instance variable, while also displaying it
-     in the "Your Order" GUI. Then, it resets the "Order Coffee" GUI data fields to their default.
+     Adds the specified Coffee object to the MainController's currentOrder instance variable, and then it resets the
+     "Ordering Coffee" GUI data fields to their default.
      @param event An ActionEvent object that occurs when the "Add to Order" button is pressed in the "Ordering Coffee"
      GUI.
      */

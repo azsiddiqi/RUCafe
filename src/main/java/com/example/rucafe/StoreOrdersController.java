@@ -53,7 +53,7 @@ public class StoreOrdersController {
     /**
      Sets the reference of the MainController object to the mainController instance variable, which allows for sharing
      data between the MainController object and the StoreOrdersController object.
-     * @param controller the MainController object that is passed from the MainController class.
+     @param controller the MainController object that is passed from the MainController class.
      */
     public void setMainController(MainController controller) {
         mainController = controller;
