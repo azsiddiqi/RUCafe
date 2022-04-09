@@ -49,11 +49,11 @@ public class OrderingDonutsController implements Initializable {
 
     private String saveDonutHoleQuantity;
 
-    private double price;
+    private double calculatedSubTotal;
 
     @Override
     public void initialize(URL location, ResourceBundle resource){
-        price = 0;
+        calculatedSubTotal = 0;
         yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed", "Mint");
         cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee", "Peanut");
         donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
@@ -94,6 +94,7 @@ public class OrderingDonutsController implements Initializable {
         listDonutFlavors.getSelectionModel().selectFirst();
         listQuantities.getSelectionModel().select(saveYeastDonutQuantity);
         subTotal.setText("$0.00");
+        calculatedSubTotal = 0;
         mainController.alertPopUp("Order added!", "Donut(s) successfully added to order! Thank you!", "Information");
     }
 
@@ -123,11 +124,11 @@ public class OrderingDonutsController implements Initializable {
         }
         Donut addDonut = new Donut(Integer.parseInt(listQuantities.getValue()),
                 listDonutFlavors.getSelectionModel().getSelectedItem(), listDonutTypes.getValue());
-        price = price + addDonut.itemPrice();
+        calculatedSubTotal = calculatedSubTotal + addDonut.itemPrice();
         listSelectedDonutFlavors.getItems().add(addDonut);
         listDonutFlavors.getItems().remove(listDonutFlavors.getSelectionModel().getSelectedItem());
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText("$" + paddingZeroes.format(price));
+        subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
 
     }
 
@@ -138,9 +139,9 @@ public class OrderingDonutsController implements Initializable {
             return;
         }
         Donut removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();
-        price = price - removeDonut.itemPrice();
+        calculatedSubTotal = calculatedSubTotal - removeDonut.itemPrice();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText("$" + paddingZeroes.format(price));
+        subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
         listSelectedDonutFlavors.getItems().remove(listSelectedDonutFlavors.getSelectionModel().getSelectedItem());
         if (removeDonut.getDonutType().equals("Yeast Donut")) {
             yeastDonutFlavors.add(removeDonut.getFlavor());

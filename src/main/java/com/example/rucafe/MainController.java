@@ -15,7 +15,7 @@ public class MainController {
 
     private Stage secondWindow = new Stage();
     private StoreOrders allStoreOrders = new StoreOrders();
-    private Order currentOrder = new Order();
+    private Order currentOrder = new Order(1);
 
     @FXML
     void openOrderingBasketView(ActionEvent event) throws IOException {

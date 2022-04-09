@@ -4,21 +4,25 @@ import java.util.ArrayList;
 
 
 /**
- This class is used to create Order objects that each contain an arraylist of MenuItem objects. There is a constructor
- that initializes an Order object, and there is a getter method that returns the arraylist of MenuItem objects. You can
- add a MenuItem object to the arraylist and remove a MenuItem object from the arraylist.
+ This class is used to create Order objects that each contain an arraylist of MenuItem objects and an order number.
+ There is a constructor that initializes an Order object, and there are getter methods that return the arraylist of
+ MenuItem objects and the order number. You can add a MenuItem object to the arraylist and remove a MenuItem object from
+ the arraylist.
  @author Karan Patel, Azaan Siddiqi
  */
 public class Order implements Customizable {
 
     private ArrayList<MenuItem> totalMenuItems;
+    private int orderNumber;
 
 
     /**
-     Creates an order object that initializes the arraylist of MenuItem objects.
+     Creates an order object that initializes the arraylist of MenuItem objects and contains an order number.
+     @param orderNumber the order number of the Order object that is being created.
      */
-    public Order() {
+    public Order(int orderNumber) {
         this.totalMenuItems = new ArrayList<>();
+        this.orderNumber = orderNumber;
     }
 
 
@@ -28,6 +32,15 @@ public class Order implements Customizable {
      */
     public ArrayList<MenuItem> getTotalMenuItems() {
         return this.totalMenuItems;
+    }
+
+
+    /**
+     Returns the order number of the specified Order object.
+     @return the order number of the specified Order object.
+     */
+    public int getOrderNumber() {
+        return this.orderNumber;
     }
 
 

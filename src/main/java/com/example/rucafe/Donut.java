@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 /**
  This class extends the MenuItem class and is a blueprint for the donut menu item. It includes data such as the
- quantity, flavor, and type of the donuts. It has functions that return the price of the donut, an equals method, and a
- toString method. Along with this the class has getter methods for the donut type and flavor.
+ quantity, flavor, and type of the donuts. It has functions that return the price of the donut and a toString method.
+ Along with this the class has getter methods for the donut type and flavor.
  @author Azaan Siddiqi, Karan Patel
  */
 public class Donut extends MenuItem {
@@ -64,24 +64,6 @@ public class Donut extends MenuItem {
         } else {
             return Double.parseDouble(paddingZeroes.format(DONUT_HOLE_PRICE * this.quantity));
         }
-    }
-
-
-    /**
-     *
-     * @param obj Donut object being compared to specified Donut object.
-     * @return true if .
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Donut) {
-            Donut compared = (Donut) obj;
-            if (this.itemPrice() == compared.itemPrice() && this.flavor.equals(compared.flavor) &&
-                    this.donutType.equals(compared.donutType)) {
-                return true;
-            }
-        }
-        return false;
     }
 
 

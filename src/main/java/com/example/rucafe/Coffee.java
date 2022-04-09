@@ -7,8 +7,8 @@ import java.util.ArrayList;
 /**
  This class extends the MenuItem class, implements the Customizable interface, and is a blueprint for the coffee menu
  item. It includes data such as the size of the cup, quantity, and add-ins for a coffee order. It has functions that
- return the price of the coffee, an equals method, and a toString method. Along with this the class has the capacity to
- add and remove add-ins from the coffee object.
+ return the price of the coffee and a toString method. Along with this the class has the capacity to add and remove
+ add-ins from the coffee object.
  @author Azaan Siddiqi, Karan Patel
  */
 public class Coffee extends MenuItem implements Customizable {
@@ -91,25 +91,6 @@ public class Coffee extends MenuItem implements Customizable {
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         return Double.parseDouble(paddingZeroes.format(price));
-    }
-
-
-    /**
-     Compares totalAddIns and sizeOfCoffee instance variables of two different coffee objects to see if coffee type is
-     the same.
-     @param obj the Coffee object to be compared to the specified Coffee object.
-     @return true if both coffee objects are equal, false otherwise.
-     */
-    @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Coffee) {
-            Coffee coffee = (Coffee) obj;
-            if (coffee.totalAddIns.containsAll(this.totalAddIns) && this.totalAddIns.containsAll(coffee.totalAddIns) &&
-                    (coffee.sizeOfCoffee.equals(this.sizeOfCoffee))){
-                return true;
-            }
-        }
-        return false;
     }
 
 

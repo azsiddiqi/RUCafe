@@ -39,16 +39,15 @@ public class OrderingBasketController  {
      order, and it sets the sub total, sales tax, and order total.
      */
     public void initializeData(){
-        double price = 0;
         currentOrder = mainController.getCurrentOrder();
         for (int i = 0; i < currentOrder.getTotalMenuItems().size(); i++) {
-            price = price + currentOrder.getTotalMenuItems().get(i).itemPrice();
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
+        double calculatedSubTotal = currentOrder.calculateSubTotal();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText("$" + paddingZeroes.format(price));
-        salesTax.setText("$" + paddingZeroes.format(price * SALES_TAX));
-        orderTotal.setText("$" + paddingZeroes.format(price + price * SALES_TAX));
+        subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
+        salesTax.setText("$" + paddingZeroes.format(calculatedSubTotal * SALES_TAX));
+        orderTotal.setText("$" + paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
         listOrderItems.getSelectionModel().selectFirst();
     }
 
@@ -75,13 +74,12 @@ public class OrderingBasketController  {
             return;
         }
         mainController.getAllStoreOrders().add(mainController.getCurrentOrder());
-        mainController.setCurrentOrder(new Order());
+        mainController.setCurrentOrder(new Order(mainController.getCurrentOrder().getOrderNumber() + 1));
         listOrderItems.getItems().clear();
         subTotal.setText("$0.00");
         salesTax.setText("$0.00");
         orderTotal.setText("$0.00");
         mainController.alertPopUp("Order placed!", "Order successfully placed! Thank you!", "Information");
-
     }
 
 
@@ -97,19 +95,14 @@ public class OrderingBasketController  {
             mainController.alertPopUp("Failed to remove selected item!", "No item selected!", "Error");
             return;
         }
-        double price = 0;
         currentOrder.remove(currentOrder.getTotalMenuItems().get(listOrderItems.getSelectionModel().getSelectedIndex()));
         listOrderItems.getItems().remove(listOrderItems.getSelectionModel().getSelectedIndex());
-        for (int i = 0; i < currentOrder.getTotalMenuItems().size(); i++) {
-            price = price + currentOrder.getTotalMenuItems().get(i).itemPrice();
-        }
+        double calculatedSubTotal = currentOrder.calculateSubTotal();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText(paddingZeroes.format(price));
-        salesTax.setText(paddingZeroes.format(price * SALES_TAX));
-        orderTotal.setText(paddingZeroes.format(price + price * SALES_TAX));
+        subTotal.setText(paddingZeroes.format(calculatedSubTotal));
+        salesTax.setText(paddingZeroes.format(calculatedSubTotal * SALES_TAX));
+        orderTotal.setText(paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
         mainController.alertPopUp("Removed selected item!", "Item successfully removed!", "Information");
-
-
     }
 
 }

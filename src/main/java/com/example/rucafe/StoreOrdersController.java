@@ -38,13 +38,13 @@ public class StoreOrdersController {
 
     /**
      After the "Store Orders" button is pressed in the main menu, this method fills the listOrderNumber ComboBox object
-     with as many numbers as there are saved orders, starting from 1. It also sets the total to $0.00 and selects the
-     first number to be displayed on the listOrderNumber ComboBox.
+     with the order numbers of every order in the MainController's allStoreOrders instance variable. It also sets the
+     total to $0.00 and selects the first number to be displayed on the listOrderNumber ComboBox.
      */
     public void initializeData() {
         orderTotal.setText("$0.00");
         for (int i = 0; i < mainController.getAllStoreOrders().getTotalOrders().size(); i++) {
-            listOrderNumber.getItems().add(i + 1);
+            listOrderNumber.getItems().add(mainController.getAllStoreOrders().getTotalOrders().get(i).getOrderNumber());
         }
         listOrderNumber.getSelectionModel().selectFirst();
     }
@@ -77,7 +77,6 @@ public class StoreOrdersController {
         listOrderNumber.getItems().remove(listOrderNumber.getSelectionModel().getSelectedItem());
         listOrderNumber.getSelectionModel().selectFirst();
         mainController.alertPopUp("Successfully cancelled order!", "Order successfully canceled!", "Information");
-
     }
 
 
@@ -89,18 +88,17 @@ public class StoreOrdersController {
      */
     @FXML
     void displayNewOrder(ActionEvent event) {
-        double price = 0;
         if (listOrderNumber.getSelectionModel().getSelectedIndex() == -1) {
             return;
         }
         currentOrder = mainController.getAllStoreOrders().getTotalOrders().get(listOrderNumber.getSelectionModel().getSelectedIndex());
         listOrderItems.getItems().clear();
         for (int i = 0; i < currentOrder.getTotalMenuItems().size(); i++) {
-            price = price + currentOrder.getTotalMenuItems().get(i).itemPrice();
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
+        double calculatedSubTotal = currentOrder.calculateSubTotal();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        orderTotal.setText("$" + paddingZeroes.format(price + price * SALES_TAX));
+        orderTotal.setText("$" + paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
     }
 
 
@@ -121,10 +119,10 @@ public class StoreOrdersController {
         PrintWriter printWriter = new PrintWriter(fileWriter);
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         for (int i = 0; i < mainController.getAllStoreOrders().getTotalOrders().size(); i++) {
-            printWriter.println("Order Number: " + (i + 1));
-            double price = Double.parseDouble((paddingZeroes.format(mainController. getAllStoreOrders().getTotalOrders()
+            printWriter.println("Order Number: " + mainController.getAllStoreOrders().getTotalOrders().get(i).getOrderNumber());
+            double calculatedSubTotal = Double.parseDouble((paddingZeroes.format(mainController.getAllStoreOrders().getTotalOrders()
                     .get(i).calculateSubTotal())));
-            printWriter.println("Total: $" + paddingZeroes.format((price + price * SALES_TAX)));
+            printWriter.println("Total: $" + paddingZeroes.format((calculatedSubTotal + calculatedSubTotal * SALES_TAX)));
             for (int j = 0; j < mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().size(); j++) {
                 printWriter.println(" " + mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().get(j).toString());
             }
