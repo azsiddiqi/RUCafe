@@ -114,7 +114,7 @@ public class StoreOrdersController {
             mainController.alertPopUp("Failed to export orders!", "No orders to export!", "Error");
             return;
         }
-        File file = new File("ExportedOrders.txt");
+        File file = new File("src/ExportedOrders.txt");
         FileWriter fileWriter = new FileWriter(file);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
