@@ -7,6 +7,7 @@ package com.example.rucafe;
  */
 public abstract class MenuItem {
 
+
     /**
      Returns the price of a Donut object or a Coffee object, which are both objects of subclasses of this class.
      @return the price of a Donut object or a Coffee object.
