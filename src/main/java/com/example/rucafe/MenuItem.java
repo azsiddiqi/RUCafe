@@ -4,6 +4,7 @@ package com.example.rucafe;
 /**
  This abstract class is extended by the Donut class and the Coffee class, and it contains an abstract method called
  itemPrice() that returns the price of a Donut or Coffee.
+ @author Karan Patel, Azaan Siddiqi
  */
 public abstract class MenuItem {
 

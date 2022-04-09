@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
  the "Your Orders" scene. When switching between donut types, it changes the information that is being displayed. There
  is also an initialize method that initializes the data and a setter method that sets the mainController instance
  variable.
+ @author Karan Patel, Azaan Siddiqi
  */
 public class OrderingDonutsController implements Initializable {
 
