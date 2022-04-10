@@ -69,7 +69,7 @@ public class OrderingDonutsController implements Initializable {
         calculatedSubTotal = 0;
         yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed",
                 "Mint");
-        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee",
+        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Sugary", "Peach",
                 "Peanut");
         donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
         listDonutTypes.getItems().addAll("Yeast Donut", "Cake Donut", "Donut Hole");
@@ -111,7 +111,7 @@ public class OrderingDonutsController implements Initializable {
         listSelectedDonutFlavors.getItems().clear();
         yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed",
                 "Mint");
-        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee",
+        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Sugary", "Peach",
                 "Peanut");
         donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
         listDonutFlavors.setItems(yeastDonutFlavors);
