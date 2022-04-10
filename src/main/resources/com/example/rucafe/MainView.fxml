@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rucafe.MainController">
+<BorderPane style="-fx-background-color: MintCream;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rucafe.MainController">
    <center>
       <GridPane prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
         <columnConstraints>
