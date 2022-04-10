@@ -200,5 +200,4 @@ public class OrderingDonutsController implements Initializable {
             donutHoleFlavors.add(removeDonut.getFlavor());
         }
     }
-
 }

@@ -35,6 +35,8 @@ public class StoreOrdersController {
 
     private static final double SALES_TAX = 0.06625;
 
+    private static final double NOT_FOUND = -1;
+
 
     /**
      After the "Store Orders" button is pressed in the main menu, this method fills the listOrderNumber ComboBox object
@@ -74,8 +76,8 @@ public class StoreOrdersController {
         }
         orderTotal.setText("$0.00");
         listOrderItems.getItems().clear();
-        mainController.getAllStoreOrders().getTotalOrders().remove(listOrderNumber.getSelectionModel()
-                .getSelectedIndex());
+        mainController.getAllStoreOrders().remove(mainController.getAllStoreOrders().getTotalOrders()
+                .get(listOrderNumber.getSelectionModel().getSelectedIndex()));
         listOrderNumber.getItems().remove(listOrderNumber.getSelectionModel().getSelectedItem());
         listOrderNumber.getSelectionModel().selectFirst();
         mainController.popUpAlert("Successfully cancelled order!",
@@ -91,7 +93,7 @@ public class StoreOrdersController {
      */
     @FXML
     void displayNewOrder(ActionEvent event) {
-        if (listOrderNumber.getSelectionModel().getSelectedIndex() == -1) {
+        if (listOrderNumber.getSelectionModel().getSelectedIndex() == NOT_FOUND) {
             return;
         }
         currentOrder = mainController.getAllStoreOrders().getTotalOrders().get(listOrderNumber.getSelectionModel()
