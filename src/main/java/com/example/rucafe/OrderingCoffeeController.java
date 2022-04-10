@@ -15,10 +15,9 @@ import java.util.ResourceBundle;
 
 /**
  This class allows the user to order coffee with specifications to the size, quantity, and add-ins of the coffee order.
- It has a method that adds the coffee order to the user's order and makes it displayed in the "Your Orders" scene. It
- also has a method that continuously updates and displays the subtotal of the user's current coffee order when changes
- are made to it. There is also an initialize method that initializes the data and a setter method that sets the
- mainController instance variable.
+ It has a method that adds the coffee order to the user's order. It also has a method that continuously updates and
+ displays the subtotal of the user's current coffee order when changes are made to it. There is also an initialize
+ method that initializes the data and a setter method that sets the mainController instance variable.
  @author Karan Patel, Azaan Siddiqi
  */
 public class OrderingCoffeeController implements Initializable {
@@ -60,7 +59,7 @@ public class OrderingCoffeeController implements Initializable {
      @param resource Localizes the root object, null otherwise if the root object wasn't localized.
      */
     @Override
-    public void initialize(URL location, ResourceBundle resource){
+    public void initialize(URL location, ResourceBundle resource) {
         totalAddIns = new ArrayList<>();
         listCoffeeSizes.getItems().addAll("Short", "Tall", "Grande", "Venti");
         listCoffeeSizes.getSelectionModel().selectFirst();
@@ -99,7 +98,8 @@ public class OrderingCoffeeController implements Initializable {
         listCoffeeSizes.getSelectionModel().selectFirst();
         listQuantity.getSelectionModel().selectFirst();
         subTotal.setText("$1.69");
-        mainController.alertPopUp("Order added!", "Coffee(s) successfully added to order! Thank you!", "Information");
+        mainController.popUpAlert("Order added!",
+                "Coffee(s) successfully added to order! Thank you!", "Information");
 
     }
 
@@ -120,22 +120,22 @@ public class OrderingCoffeeController implements Initializable {
         }
         if (syrup.isSelected() == true) {
             currentCoffee.add("Syrup");
-        } else if (syrup.isSelected() == false){
+        } else if (syrup.isSelected() == false) {
             currentCoffee.remove("Syrup");
         }
         if (milk.isSelected() == true) {
             currentCoffee.add("Milk");
-        } else if (milk.isSelected() == false){
+        } else if (milk.isSelected() == false) {
             currentCoffee.remove("Milk");
         }
         if (caramel.isSelected() == true) {
             currentCoffee.add("Caramel");
-        } else if (caramel.isSelected() == false){
+        } else if (caramel.isSelected() == false) {
             currentCoffee.remove("Caramel");
         }
         if (whippedCream.isSelected() == true) {
             currentCoffee.add("Whipped Cream");
-        } else if (whippedCream.isSelected() == false){
+        } else if (whippedCream.isSelected() == false) {
             currentCoffee.remove("Whipped Cream");
         }
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");

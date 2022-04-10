@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 
 /**
- This class is used to create StoreOrders objects that each contain an arraylist of Order objects. There is a constructor
- that initializes a StoreOrders object, and there is a getter method that returns the arraylist of Order objects. You
- can add an Order object to the arraylist and remove an Order object from the arraylist.
+ This class is used to create StoreOrders objects that each contain an arraylist of Order objects. There is a
+ constructor that initializes a StoreOrders object, and there is a getter method that returns the arraylist of Order
+ objects. You can add an Order object to the arraylist and remove an Order object from the arraylist.
  @author Karan Patel, Azaan Siddiqi
  */
 public class StoreOrders implements Customizable {
@@ -37,7 +37,7 @@ public class StoreOrders implements Customizable {
      @return true if the object in the parameter is an Order object and it was successfully added to the arraylist,
      false otherwise.
      */
-    public boolean add(Object obj){
+    public boolean add(Object obj) {
         if (obj instanceof Order) {
             Order addOrder = (Order) obj;
             totalOrders.add(addOrder);
@@ -53,7 +53,7 @@ public class StoreOrders implements Customizable {
      @return true if the object in the parameter is an Order object and it was successfully removed from the arraylist,
      false otherwise.
      */
-    public boolean remove(Object obj){
+    public boolean remove(Object obj) {
         if (obj instanceof Order) {
             Order removeOrder = (Order) obj;
             totalOrders.remove(removeOrder);

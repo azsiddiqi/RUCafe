@@ -19,10 +19,9 @@ import java.util.ResourceBundle;
 /**
  This class allows the user to order donuts with specifications to the flavor, quantity, and donut type of the donut
  order. It has two methods that continuously updates and displays the subtotal of the user's current donut order when
- changes are made to it. It also has a method that adds the donut order to the user's order and makes it displayed in
- the "Your Orders" scene. When switching between donut types, it changes the information that is being displayed. There
- is also an initialize method that initializes the data and a setter method that sets the mainController instance
- variable.
+ changes are made to it. It also has a method that adds the donut order to the user's order. When switching between
+ donut types, it changes the information that is being displayed. There is also an initialize method that initializes
+ the data and a setter method that sets the mainController instance variable.
  @author Karan Patel, Azaan Siddiqi
  */
 public class OrderingDonutsController implements Initializable {
@@ -55,6 +54,8 @@ public class OrderingDonutsController implements Initializable {
 
     private double calculatedSubTotal;
 
+    private static final int NOT_FOUND = -1;
+
 
     /**
      After the "Order Donuts" button is pressed in the main menu, this method initializes the data fields in the
@@ -64,10 +65,12 @@ public class OrderingDonutsController implements Initializable {
      @param resource Localizes the root object, null otherwise if the root object wasn't localized.
      */
     @Override
-    public void initialize(URL location, ResourceBundle resource){
+    public void initialize(URL location, ResourceBundle resource) {
         calculatedSubTotal = 0;
-        yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed", "Mint");
-        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee", "Peanut");
+        yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed",
+                "Mint");
+        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee",
+                "Peanut");
         donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
         listDonutTypes.getItems().addAll("Yeast Donut", "Cake Donut", "Donut Hole");
         listDonutTypes.getSelectionModel().selectFirst();
@@ -97,7 +100,8 @@ public class OrderingDonutsController implements Initializable {
     @FXML
     void addToOrder(ActionEvent event) {
         if (listSelectedDonutFlavors.getItems().isEmpty()) {
-            mainController.alertPopUp("Failed to add to order!", "No donut(s) selected!", "Error");
+            mainController.popUpAlert("Failed to add to order!", "No donut(s) selected!",
+                    "Error");
             return;
         }
         for (int i = 0; i < listSelectedDonutFlavors.getItems().size(); i++) {
@@ -105,14 +109,17 @@ public class OrderingDonutsController implements Initializable {
         }
         listDonutTypes.getSelectionModel().selectFirst();
         listSelectedDonutFlavors.getItems().clear();
-        yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed", "Mint");
-        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee", "Peanut");
+        yeastDonutFlavors = FXCollections.observableArrayList("Strawberry", "Vanilla", "Chocolate", "Glazed",
+                "Mint");
+        cakeDonutFlavors = FXCollections.observableArrayList("Frosted", "Blueberry", "Caramel", "Coffee",
+                "Peanut");
         donutHoleFlavors = FXCollections.observableArrayList("Mango", "Cherry", "Crunchy", "Powdered", "Apple");
         listDonutFlavors.setItems(yeastDonutFlavors);
         listQuantities.getSelectionModel().selectFirst();
         subTotal.setText("$0.00");
         calculatedSubTotal = 0;
-        mainController.alertPopUp("Order added!", "Donut(s) successfully added to order! Thank you!", "Information");
+        mainController.popUpAlert("Order added!",
+                "Donut(s) successfully added to order! Thank you!", "Information");
     }
 
 
@@ -151,8 +158,9 @@ public class OrderingDonutsController implements Initializable {
      */
     @FXML
     void chooseFlavor(ActionEvent event) {
-        if (listDonutFlavors.getSelectionModel().getSelectedIndex() == -1) {
-            mainController.alertPopUp("No item selected!", "An item has not been selected!", "Error");
+        if (listDonutFlavors.getSelectionModel().getSelectedIndex() == NOT_FOUND) {
+            mainController.popUpAlert("No item selected!",
+                    "An item has not been selected!", "Error");
             return;
         }
         Donut addDonut = new Donut(Integer.parseInt(listQuantities.getValue()),
@@ -167,15 +175,16 @@ public class OrderingDonutsController implements Initializable {
 
     /**
      After the "<<" button is pressed, it removes the selected Donut object from the listSelectedDonutFlavors ListView
-     at the right of the screen, and adds its donut flavor to the listDonutFlavors ListView at the left of the screen.
-     Then, it recalculates and displays the sub total.
+     at the right of the screen, and adds its donut flavor to the listDonutFlavors ListView at the left of the screen
+     for the respective donut type. Then, it recalculates and displays the sub total.
      @param event An ActionEvent object that occurs when the "<<" button is pressed in the "Ordering Donuts"
      GUI.
      */
     @FXML
     void removeFlavor(ActionEvent event) {
-        if (listSelectedDonutFlavors.getSelectionModel().getSelectedIndex() == -1) {
-            mainController.alertPopUp("No item selected!", "An item has not been selected!", "Error");
+        if (listSelectedDonutFlavors.getSelectionModel().getSelectedIndex() == NOT_FOUND) {
+            mainController.popUpAlert("No item selected!",
+                    "An item has not been selected!", "Error");
             return;
         }
         Donut removeDonut = listSelectedDonutFlavors.getSelectionModel().getSelectedItem();

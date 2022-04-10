@@ -29,7 +29,7 @@ public class MainController {
     /**
      Activates and displays the "Your Order" GUI, passes the MainController object to the OrderingBasketController
      object, and calls the initializeData() method inside the OrderingBasketController class.
-     @param event An ActionEvent object that occurs when the "Your Orders" button is pressed in the main menu GUI.
+     @param event An ActionEvent object that occurs when the "Your Order" button is pressed in the main menu GUI.
      @throws IOException this exception is thrown if there is an error with the input and output operations.
      */
     @FXML
@@ -107,7 +107,7 @@ public class MainController {
      @param contentInsideWindow The information that the content of the Alert object will contain.
      @param typeOfAlert The type of alert that the Alert object will be, such as an Error Alert or an Information Alert.
      */
-    public void alertPopUp(String headerMessage, String contentInsideWindow, String typeOfAlert) {
+    public void popUpAlert(String headerMessage, String contentInsideWindow, String typeOfAlert) {
         Alert alert = null;
         if (typeOfAlert.equals("Error")) {
             alert = new Alert(Alert.AlertType.ERROR);

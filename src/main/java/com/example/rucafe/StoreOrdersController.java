@@ -14,8 +14,8 @@ import java.text.DecimalFormat;
 
 
 /**
- This class maintains all the store's orders by either canceling any of the orders, switching the order that is being
- displayed, or exporting the orders to a text file.
+ This class maintains all the store's orders and can either cancel any of the orders, switch the order that is
+ being displayed, or export the orders to a text file.
  @author Karan Patel, Azaan Siddiqi
  */
 public class StoreOrdersController {
@@ -68,15 +68,18 @@ public class StoreOrdersController {
     @FXML
     void cancelOrder(ActionEvent event) {
         if (listOrderItems.getItems().isEmpty() || listOrderNumber.getItems().isEmpty()) {
-            mainController.alertPopUp("Failed to cancel order!", "There are no orders to cancel!", "Error");
+            mainController.popUpAlert("Failed to cancel order!",
+                    "There are no orders to cancel!", "Error");
             return;
         }
         orderTotal.setText("$0.00");
         listOrderItems.getItems().clear();
-        mainController.getAllStoreOrders().getTotalOrders().remove(listOrderNumber.getSelectionModel().getSelectedIndex());
+        mainController.getAllStoreOrders().getTotalOrders().remove(listOrderNumber.getSelectionModel()
+                .getSelectedIndex());
         listOrderNumber.getItems().remove(listOrderNumber.getSelectionModel().getSelectedItem());
         listOrderNumber.getSelectionModel().selectFirst();
-        mainController.alertPopUp("Successfully cancelled order!", "Order successfully canceled!", "Information");
+        mainController.popUpAlert("Successfully cancelled order!",
+                "Order successfully canceled!", "Information");
     }
 
 
@@ -91,12 +94,13 @@ public class StoreOrdersController {
         if (listOrderNumber.getSelectionModel().getSelectedIndex() == -1) {
             return;
         }
-        currentOrder = mainController.getAllStoreOrders().getTotalOrders().get(listOrderNumber.getSelectionModel().getSelectedIndex());
+        currentOrder = mainController.getAllStoreOrders().getTotalOrders().get(listOrderNumber.getSelectionModel()
+                .getSelectedIndex());
         listOrderItems.getItems().clear();
         for (int i = 0; i < currentOrder.getTotalMenuItems().size(); i++) {
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
-        double calculatedSubTotal = currentOrder.calculateSubTotal();
+        double calculatedSubTotal = currentOrder.subTotalCalculation();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         orderTotal.setText("$" + paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
     }
@@ -104,14 +108,15 @@ public class StoreOrdersController {
 
     /**
      Exports all the information regarding each store order, such as its order number, items, and total price, to a
-     text file.
+     text file. This text file can be found inside the src folder.
      @param event An ActionEvent object that occurs when the "Export Orders" button is pressed on the "Store Orders"
      GUI.
      */
     @FXML
     void exportOrders (ActionEvent event) throws IOException {
         if (mainController.getAllStoreOrders().getTotalOrders().size() == 0) {
-            mainController.alertPopUp("Failed to export orders!", "No orders to export!", "Error");
+            mainController.popUpAlert("Failed to export orders!", "No orders to export!",
+                    "Error");
             return;
         }
         File file = new File("src/ExportedOrders.txt");
@@ -119,19 +124,22 @@ public class StoreOrdersController {
         PrintWriter printWriter = new PrintWriter(fileWriter);
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         for (int i = 0; i < mainController.getAllStoreOrders().getTotalOrders().size(); i++) {
-            printWriter.println("Order Number: " + mainController.getAllStoreOrders().getTotalOrders().get(i).getOrderNumber());
-            double calculatedSubTotal = Double.parseDouble((paddingZeroes.format(mainController.getAllStoreOrders().getTotalOrders()
-                    .get(i).calculateSubTotal())));
-            printWriter.println("Total: $" + paddingZeroes.format((calculatedSubTotal + calculatedSubTotal * SALES_TAX)));
-            for (int j = 0; j < mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().size(); j++) {
-                printWriter.println(" " + mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().get(j).toString());
+            printWriter.println("Order Number: " + mainController.getAllStoreOrders().getTotalOrders().get(i)
+                    .getOrderNumber());
+            double calculatedSubTotal = Double.parseDouble((paddingZeroes.format(mainController
+                    .getAllStoreOrders().getTotalOrders().get(i).subTotalCalculation())));
+            printWriter.println("Total: $" + paddingZeroes.format((calculatedSubTotal + calculatedSubTotal
+                    * SALES_TAX)));
+            for (int j = 0; j < mainController.getAllStoreOrders().getTotalOrders().get(i).getTotalMenuItems().size();
+                 j++) {
+                printWriter.println(" " + mainController.getAllStoreOrders().getTotalOrders().get(i)
+                        .getTotalMenuItems().get(j).toString());
             }
             printWriter.println();
         }
         printWriter.close();
         fileWriter.close();
-        mainController.alertPopUp("Successfully exported orders!", "All orders have been successfully exported!", "Information");
-
+        mainController.popUpAlert("Successfully exported orders!",
+                "All orders have been successfully exported!", "Information");
     }
-
 }

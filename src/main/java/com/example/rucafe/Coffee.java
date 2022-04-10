@@ -25,7 +25,7 @@ public class Coffee extends MenuItem implements Customizable {
 
 
     /**
-     Coffee menuItem constructor taking in specified parameters denoting add-ins, size, and quantity.
+     Coffee object constructor taking in specified parameters denoting add-ins, size, and quantity.
      @param totalAddIns an arraylist of strings that contains all the add-ins of a coffee object.
      @param sizeOfCoffee the size of the cup of the coffee.
      @param quantity the number of coffees being ordered.
@@ -42,11 +42,12 @@ public class Coffee extends MenuItem implements Customizable {
      @param obj the add-in to be added to the totalAddIns ArrayList.
      @return true if the object is a valid add-in and it was successfully added, false otherwise.
      */
-    public boolean add(Object obj){
+    public boolean add(Object obj) {
         if (obj instanceof String) {
             String addInName = (String) obj;
             if ((addInName.equals("Cream") || addInName.equals("Syrup") || addInName.equals("Milk") ||
-                    addInName.equals("Caramel") || addInName.equals("Whipped Cream")) && !totalAddIns.contains(addInName)) {
+                    addInName.equals("Caramel") || addInName.equals("Whipped Cream"))
+                    && !totalAddIns.contains(addInName)) {
                 totalAddIns.add(addInName);
                 return true;
             }
@@ -60,11 +61,12 @@ public class Coffee extends MenuItem implements Customizable {
      @param obj the add-in to be removed from the totalAddIns ArrayList.
      @return true if the object is a valid add-in and it was successfully removed, false otherwise.
      */
-    public boolean remove(Object obj){
+    public boolean remove(Object obj) {
         if (obj instanceof String) {
             String addInName = (String) obj;
             if ((addInName.equals("Cream") || addInName.equals("Syrup") || addInName.equals("Milk") ||
-                    addInName.equals("Caramel") || addInName.equals("Whipped Cream")) && totalAddIns.contains(addInName)) {
+                    addInName.equals("Caramel") || addInName.equals("Whipped Cream"))
+                    && totalAddIns.contains(addInName)) {
                 totalAddIns.remove(addInName);
                 return true;
             }

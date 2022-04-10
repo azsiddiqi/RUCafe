@@ -32,18 +32,20 @@ public class OrderingBasketController  {
 
     private static final double SALES_TAX = 0.06625;
 
+    private static final int NOT_FOUND = -1;
+
 
     /**
      After the "Your Order" button is pressed in the main menu, this method fills the opened window with information
      pertaining to the current order. It fills the listOrderItems ListView object with all the items in the current
      order, and it sets the sub total, sales tax, and order total.
      */
-    public void initializeData(){
+    public void initializeData() {
         currentOrder = mainController.getCurrentOrder();
         for (int i = 0; i < currentOrder.getTotalMenuItems().size(); i++) {
             listOrderItems.getItems().add(currentOrder.getTotalMenuItems().get(i).toString());
         }
-        double calculatedSubTotal = currentOrder.calculateSubTotal();
+        double calculatedSubTotal = currentOrder.subTotalCalculation();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
         salesTax.setText("$" + paddingZeroes.format(calculatedSubTotal * SALES_TAX));
@@ -69,7 +71,8 @@ public class OrderingBasketController  {
     @FXML
     void placeOrder(ActionEvent event) {
         if (listOrderItems.getItems().isEmpty()) {
-            mainController.alertPopUp("Failed to place order!", "No items in the shopping cart!", "Error");
+            mainController.popUpAlert("Failed to place order!",
+                    "No items in the shopping cart!", "Error");
             return;
         }
         mainController.getAllStoreOrders().add(mainController.getCurrentOrder());
@@ -78,7 +81,8 @@ public class OrderingBasketController  {
         subTotal.setText("$0.00");
         salesTax.setText("$0.00");
         orderTotal.setText("$0.00");
-        mainController.alertPopUp("Order placed!", "Order successfully placed! Thank you!", "Information");
+        mainController.popUpAlert("Order placed!",
+                "Order successfully placed! Thank you!", "Information");
     }
 
 
@@ -90,19 +94,22 @@ public class OrderingBasketController  {
      */
     @FXML
     void removeSelectedItem(ActionEvent event) {
-        if (listOrderItems.getSelectionModel().getSelectedIndex() == -1) {
-            mainController.alertPopUp("Failed to remove selected item!", "No item selected!", "Error");
+        if (listOrderItems.getSelectionModel().getSelectedIndex() == NOT_FOUND) {
+            mainController.popUpAlert("Failed to remove selected item!",
+                    "No item selected!", "Error");
             return;
         }
-        currentOrder.remove(currentOrder.getTotalMenuItems().get(listOrderItems.getSelectionModel().getSelectedIndex()));
+        currentOrder.remove(currentOrder.getTotalMenuItems().get(listOrderItems.getSelectionModel()
+                .getSelectedIndex()));
         listOrderItems.getItems().remove(listOrderItems.getSelectionModel().getSelectedIndex());
-        double calculatedSubTotal = currentOrder.calculateSubTotal();
+        double calculatedSubTotal = currentOrder.subTotalCalculation();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
         subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
         salesTax.setText("$" + paddingZeroes.format(calculatedSubTotal * SALES_TAX));
         orderTotal.setText("$" + paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
         listOrderItems.getSelectionModel().clearSelection();
-        mainController.alertPopUp("Removed selected item!", "Item successfully removed!", "Information");
+        mainController.popUpAlert("Removed selected item!",
+                "Item successfully removed!", "Information");
     }
 
 }

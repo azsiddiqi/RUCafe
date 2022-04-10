@@ -20,7 +20,7 @@ public class Donut extends MenuItem {
 
 
     /**
-     Donut menuItem constructor taking in quantity, flavor, and donut type as parameters.
+     Donut object constructor taking in quantity, flavor, and donut type as parameters.
      @param quantity amount of donuts being ordered.
      @param flavor String denoting the flavor of the donut.
      @param donutType String denoting the type of donut being ordered.

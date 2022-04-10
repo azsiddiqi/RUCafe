@@ -45,10 +45,10 @@ public class Order implements Customizable {
 
 
     /**
-     Returns the sub total price of a specific order by calculating it based on all the items of that order.
+     Returns the sub total price of a specific order by calculating it based on all the menu items of that order.
      @return the sub total price of a specific order.
      */
-    public double calculateSubTotal() {
+    public double subTotalCalculation() {
         double subTotal = 0;
         for (int i = 0; i < totalMenuItems.size(); i++) {
             subTotal = subTotal + totalMenuItems.get(i).itemPrice();
@@ -63,10 +63,10 @@ public class Order implements Customizable {
      @return true if the object in the parameter is a MenuItem object and it was successfully added to the arraylist,
      false otherwise.
      */
-    public boolean add(Object obj){
+    public boolean add(Object obj) {
         if (obj instanceof MenuItem) {
-            MenuItem additem = (MenuItem) obj;
-            totalMenuItems.add(additem);
+            MenuItem addItem = (MenuItem) obj;
+            totalMenuItems.add(addItem);
             return true;
         }
         return false;
@@ -79,10 +79,10 @@ public class Order implements Customizable {
      @return true if the object in the parameter is a MenuItem object and it was successfully removed from the
      arraylist, false otherwise.
      */
-    public boolean remove(Object obj){
+    public boolean remove(Object obj) {
         if (obj instanceof MenuItem) {
-            MenuItem removeitem = (MenuItem) obj;
-            totalMenuItems.remove(removeitem);
+            MenuItem removeItem = (MenuItem) obj;
+            totalMenuItems.remove(removeItem);
             return true;
         }
         return false;
