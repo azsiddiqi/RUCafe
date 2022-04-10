@@ -98,9 +98,9 @@ public class OrderingBasketController  {
         listOrderItems.getItems().remove(listOrderItems.getSelectionModel().getSelectedIndex());
         double calculatedSubTotal = currentOrder.calculateSubTotal();
         DecimalFormat paddingZeroes = new DecimalFormat("#,##0.00");
-        subTotal.setText(paddingZeroes.format(calculatedSubTotal));
-        salesTax.setText(paddingZeroes.format(calculatedSubTotal * SALES_TAX));
-        orderTotal.setText(paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
+        subTotal.setText("$" + paddingZeroes.format(calculatedSubTotal));
+        salesTax.setText("$" + paddingZeroes.format(calculatedSubTotal * SALES_TAX));
+        orderTotal.setText("$" + paddingZeroes.format(calculatedSubTotal + calculatedSubTotal * SALES_TAX));
         listOrderItems.getSelectionModel().clearSelection();
         mainController.alertPopUp("Removed selected item!", "Item successfully removed!", "Information");
     }
